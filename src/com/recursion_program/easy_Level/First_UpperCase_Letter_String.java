@@ -1,4 +1,4 @@
-package com.recursion_program;
+package com.recursion_program.easy_Level;
 
 public class First_UpperCase_Letter_String {
 	public static char checkUpper(String str)
