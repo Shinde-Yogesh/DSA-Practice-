@@ -1,18 +1,18 @@
 package com.recursion_program.easy_Level;
 
 public class Length_of_String {
-	public static int length(String str) {
+	public static int calculateLengthRecursive(String str) {
 		if(str.equals(""))
 		{
 			return 0;
 		}
-		System.out.println(str.substring(1)+1);
-		return length(str.substring(1))+1;
+		
+		return calculateLengthRecursive(str.substring(1))+1;
 	}
 
 	public static void main(String[] args) {
 		String str = "geeks";
-		System.out.println(length(str));
+		System.out.println(calculateLengthRecursive(str));
 	}
 }
 
