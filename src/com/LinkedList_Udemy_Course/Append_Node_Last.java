@@ -26,7 +26,7 @@ public class Append_Node_Last {
 	public void printList() {
 		Node temp = head;
 		while (temp != null) {
-			System.out.print(temp.value+" -> ");
+			System.out.print(temp.value + " -> ");
 			temp = temp.next;
 		}
 		System.out.println("NULL");
@@ -43,29 +43,39 @@ public class Append_Node_Last {
 		}
 		length++;
 	}
-	
-	public Node removeLast()
-	{
-		if(length == 0)
-		{
+
+	// remove first element
+	public Node removeFirst() {
+		if (length == 0)
+			return null;
+		Node temp = head;
+		head = head.next;
+		temp.next = null;
+		length--;
+		if (length == 0) {
+			tail = null;
+		}
+		return temp;
+	}
+
+	public Node removeLast() {
+		if (length == 0) {
 			return null;
 		}
-		
+
 		Node temp = head;
 		Node pre = head;
-		
-		while(temp.next != null)
-		{
+
+		while (temp.next != null) {
 			pre = temp;
 			temp = temp.next;
 		}
 		tail = pre;
 		tail.next = null;
 		length--;
-		
+
 		// if single node test case
-		if(length == 0)
-		{
+		if (length == 0) {
 			head = null;
 			tail = null;
 		}
@@ -78,16 +88,28 @@ public class Append_Node_Last {
 
 		myLinkedList.append(5);
 //		myLinkedList.printList();
-		
-		
+		/*
 		// if 2 Item - return 2 node
 		System.out.println(myLinkedList.removeLast().value);
-		
+
 		// if 1Item - return 1 node
 		System.out.println(myLinkedList.removeLast().value);
-		
+
 		// if 0 Item - return null
 		System.out.println(myLinkedList.removeLast());
+		
+		*/
+		
+		myLinkedList.printList();
+		
+		// if 2 Item - return 2 node
+				System.out.println(myLinkedList.removeFirst().value);
+
+				// if 1Item - return 1 node
+				System.out.println(myLinkedList.removeFirst().value);
+
+				// if 0 Item - return null
+				System.out.println(myLinkedList.removeFirst());
 	}
 
 }
