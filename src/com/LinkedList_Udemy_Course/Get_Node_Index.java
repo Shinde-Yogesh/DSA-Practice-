@@ -1,9 +1,5 @@
 package com.LinkedList_Udemy_Course;
 
-import java.util.Iterator;
-
-import com.LinkedList_Udemy_Course.LinkedList_Construct.Node;
-
 public class Get_Node_Index {
 
 	private Node head;
@@ -57,6 +53,17 @@ public class Get_Node_Index {
 		}
 		System.out.println("NULL");
 	}
+	
+	public boolean set(int index, int value)
+	{
+		Node temp = get(index);
+		if(temp != null)
+		{
+			temp.value = value;
+			return true;
+		}
+		return false;
+	}
 
 	public void getLength() {
 		System.out.println("Length : " + length);
@@ -70,9 +77,12 @@ public class Get_Node_Index {
 		myLinkedList.append(7);
 		myLinkedList.append(8);
 		myLinkedList.getLength();
-		myLinkedList.printList();
 		
-		System.out.println(myLinkedList.get(2).value);
+		myLinkedList.printList();
+		myLinkedList.set(4,9);
+		
+		myLinkedList.printList();
+//		System.out.println("The index element : "+myLinkedList.get(2).value);
 	}
 
 }
