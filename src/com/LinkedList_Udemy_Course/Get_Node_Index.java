@@ -1,7 +1,5 @@
 package com.LinkedList_Udemy_Course;
 
-import com.LinkedList_Udemy_Course.Append_Node_Last.Node;
-
 public class Get_Node_Index {
 
 	private Node head;
