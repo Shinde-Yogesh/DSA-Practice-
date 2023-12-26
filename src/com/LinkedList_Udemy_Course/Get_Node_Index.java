@@ -102,6 +102,17 @@ public class Get_Node_Index {
 		}
 		return false;
 	}
+	 public void prepend(int value) {
+	        Node newNode = new Node(value);
+	        if (length == 0) {
+	            head = newNode;
+	            tail = newNode;
+	        } else {
+	            newNode.next = head;
+	            head = newNode;
+	        }
+	        length++;
+	    }
 	
 	// Insert the node 
 	public boolean insert(int index, int value)
@@ -109,7 +120,7 @@ public class Get_Node_Index {
 		if(index<0 || index>length) return false;
 		if(index == 0)
 		{
-			append(value);
+			prepend(value);
 			return true;
 		}
 		if(index == length)
