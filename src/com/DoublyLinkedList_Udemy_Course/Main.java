@@ -9,10 +9,12 @@ public class Main {
 		myDLL.append(9);
 		myDLL.append(10);
 		myDLL.getTail();
-		myDLL.printList();
-		myDLL.removeLast();
+//		myDLL.printList();
+//		myDLL.removeLast();
 		myDLL.printList();
 		myDLL.prepend(6);
+		myDLL.printList();
+		myDLL.removeFirst();
 		myDLL.printList();
 	}
 }
