@@ -61,4 +61,54 @@ public class DoublyLinkedList {
 		}
 		length++;
 	}
+	
+	//removeLast Node
+	public Node removeLast()
+	{/*
+		if(length == 0) return null;
+		Node temp = tail;
+		tail = temp.prev;
+		tail.next = null;
+		temp.prev = null;
+		length--;
+		// One test case for after remove single node in linked list
+		if(length == 0)
+		{
+			head = null;
+			tail = null;
+		}
+		return temp;*/
+		
+		//optimize code
+		if(length == 0) return null;
+		Node temp = tail;
+		if(length == 1)
+		{
+			head = null;
+			tail = null;
+		}
+		else
+		{
+			tail = temp.prev;
+			tail.next = null;
+			temp.prev = null;
+		}
+		length--;
+		return temp;
+	}
+	
+	public void prepend(int value)
+	{
+		Node newNode = new Node(value);
+		if(length == 0)
+		{
+			head = newNode;
+			tail = newNode;
+		}else
+		{
+			newNode.next = head;
+			head.prev = newNode;
+			head = newNode;
+		}
+	}
 }
