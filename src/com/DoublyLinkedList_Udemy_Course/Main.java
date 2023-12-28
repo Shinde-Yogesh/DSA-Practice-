@@ -8,16 +8,19 @@ public class Main {
 		myDLL.append(8);
 		myDLL.append(9);
 		myDLL.append(10);
+		myDLL.prepend(6);
 //		myDLL.getTail();
 //		myDLL.printList();
 //		myDLL.removeLast();
 //		myDLL.printList();
-		myDLL.prepend(6);
+		
 //		System.out.println(myDLL.get(2).value);
 //		System.out.println(myDLL.get(4).value);
 //		myDLL.removeFirst();
 		myDLL.printList();
-		myDLL.set(3, 15);
+//		myDLL.set(3, 15);
+		myDLL.insert(5, 11);
+		myDLL.insert(2, 17);
 		myDLL.printList();
 	}
 }
