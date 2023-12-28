@@ -13,9 +13,11 @@ public class Main {
 //		myDLL.removeLast();
 //		myDLL.printList();
 		myDLL.prepend(6);
-		System.out.println(myDLL.get(2).value);
-		System.out.println(myDLL.get(4).value);
+//		System.out.println(myDLL.get(2).value);
+//		System.out.println(myDLL.get(4).value);
 //		myDLL.removeFirst();
+		myDLL.printList();
+		myDLL.set(3, 15);
 		myDLL.printList();
 	}
 }
