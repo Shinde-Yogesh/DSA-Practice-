@@ -39,56 +39,42 @@ public class DoublyLinkedList {
 	public void getTail() {
 		System.out.println("Tail : " + tail.value);
 	}
+
 	public void getLength() {
 		System.out.println("Length : " + length);
 	}
-	
+
 	// Append the Node
-	public void append(int value)
-	{
+	public void append(int value) {
 		Node newNode = new Node(value);
-		
-		if(length == 0)
-		{
+
+		if (length == 0) {
 			head = newNode;
 			tail = newNode;
-		}
-		else
-		{
+		} else {
 			tail.next = newNode;
 			newNode.prev = tail;
 			tail = newNode;
 		}
 		length++;
 	}
-	
-	//removeLast Node
-	public Node removeLast()
-	{/*
-		if(length == 0) return null;
+
+	// removeLast Node
+	public Node removeLast() {/*
+								 * if(length == 0) return null; Node temp = tail; tail = temp.prev; tail.next =
+								 * null; temp.prev = null; length--; // One test case for after remove single
+								 * node in linked list if(length == 0) { head = null; tail = null; } return
+								 * temp;
+								 */
+
+		// optimize code
+		if (length == 0)
+			return null;
 		Node temp = tail;
-		tail = temp.prev;
-		tail.next = null;
-		temp.prev = null;
-		length--;
-		// One test case for after remove single node in linked list
-		if(length == 0)
-		{
+		if (length == 1) {
 			head = null;
 			tail = null;
-		}
-		return temp;*/
-		
-		//optimize code
-		if(length == 0) return null;
-		Node temp = tail;
-		if(length == 1)
-		{
-			head = null;
-			tail = null;
-		}
-		else
-		{
+		} else {
 			tail = temp.prev;
 			tail.next = null;
 			temp.prev = null;
@@ -96,38 +82,53 @@ public class DoublyLinkedList {
 		length--;
 		return temp;
 	}
-	
-	public void prepend(int value)
-	{
+
+	public void prepend(int value) {
 		Node newNode = new Node(value);
-		if(length == 0)
-		{
+		if (length == 0) {
 			head = newNode;
 			tail = newNode;
-		}else
-		{
+		} else {
 			newNode.next = head;
 			head.prev = newNode;
 			head = newNode;
 		}
 		length++;
 	}
-	
-	public Node removeFirst()
-	{
-		if(length == 0) return null;
+
+	public Node removeFirst() {
+		if (length == 0)
+			return null;
 		Node temp = head;
-		if(length == 1)
-		{
+		if (length == 1) {
 			head = null;
 			tail = null;
-		}else
-		{
+		} else {
 			head = head.next;
 			head.prev = null;
 			temp.next = null;
 		}
 		length--;
+		return temp;
+	}
+	// get the value using doubly linked list -> efficiecnt way
+
+	public Node get(int index) {
+		if (index < 0 || index > length) {
+			return null;
+		}
+
+		Node temp = head;
+		if (index < length / 2) {
+			for (int i = 0; i < index; i++) {
+				temp = temp.next;
+			}
+		} else {
+			temp = tail;
+			for (int i = length - 1; i > index; i--) {
+				temp = temp.prev;
+			}
+		}
 		return temp;
 	}
 }
