@@ -12,7 +12,7 @@ public class Main {
 //		myDLL.getTail();
 //		myDLL.printList();
 //		myDLL.removeLast();
-//		myDLL.printList();
+//		myDLL.printList(); 
 		
 //		System.out.println(myDLL.get(2).value);
 //		System.out.println(myDLL.get(4).value);
