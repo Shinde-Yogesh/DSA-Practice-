@@ -19,8 +19,9 @@ public class Main {
 //		myDLL.removeFirst();
 		myDLL.printList();
 //		myDLL.set(3, 15);
-		myDLL.insert(5, 11);
-		myDLL.insert(2, 17);
+//		myDLL.insert(5, 11);
+//		myDLL.insert(2, 17);
+		System.out.println("The Node removed is : "+myDLL.remove(2).value);
 		myDLL.printList();
 	}
 }
