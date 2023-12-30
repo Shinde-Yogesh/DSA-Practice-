@@ -13,8 +13,14 @@ public class Main {
 		tree.insert(82);
 		
 		tree.insert(27);
-		
-		System.out.println(tree.root.left.right.value);
+		System.out.println(tree.contains(27));
+		System.out.println(tree.contains(17));
+//		System.out.println(tree.root.left.right.value);
 	}
 	
 }
+/*
+//What you know
+Binary Search Trees always have a better Big O than Linked Lists: false
+Binary Search Trees use divide and conquer: true
+Adding an item to a Binary Search Tree is always log n: false */

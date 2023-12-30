@@ -57,4 +57,26 @@ public class BinarySearchTree {
 	}
 	
 
+	//for the node contain the value
+	public boolean contains(int value)
+	{
+		if(root == null) return false;
+		
+		//for travelling the node 
+		Node temp = root;
+		while(temp != null)
+		{
+			//for the base if less than move left
+			if(value < temp.value)
+			{
+				temp = temp.left;
+			}else if(value > temp.value)
+			{
+				temp = temp.right;
+			}else {
+				return true;
+			}
+		}
+		return false; 
+	}
 }
