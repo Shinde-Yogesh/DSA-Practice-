@@ -62,7 +62,7 @@ public class BinarySearchTree {
 	{
 		if(root == null) return false;
 		
-		//for travelling the node 
+		//for traveling the node 
 		Node temp = root;
 		while(temp != null)
 		{
