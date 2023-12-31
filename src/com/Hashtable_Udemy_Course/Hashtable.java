@@ -52,5 +52,27 @@ public class Hashtable {
 		}
 		return hash;
 	}
+	
+	//for set the value
+	public void set(String key,int value)
+	{
+		int index = hash(key);
+		
+		//store the data in node
+		Node newNode = new Node(key,value);
+		if(dataMap[index] == null)
+		{
+			dataMap[index] = newNode;
+		}else  //that means the node contains the value
+		{
+			Node temp = dataMap[index];
+			while(temp.next != null)
+			{
+				temp = temp.next;
+			}
+			temp.next = newNode;
+		}
+				
+	}
 
 }
