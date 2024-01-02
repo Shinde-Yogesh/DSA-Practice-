@@ -10,6 +10,8 @@ public class Main {
 		hashtable.set("bolts", 200);
 		hashtable.set("screwa", 140);
 		hashtable.printTable();
+//		System.out.println("The get value : "+ hashtable.get("lumber"));
+		System.out.println(hashtable.keys());
 	}
 
 }
