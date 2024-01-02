@@ -45,6 +45,17 @@ public class Graph {
 		}
 		return false;
 	}
+	
+	//for remove the Vertex
+	public boolean removeVertex(String vertex)
+	{
+		if(vertex == null) return false;
+		for (String otherVertex : adjList.get(vertex)) {
+			adjList.get(otherVertex).remove(vertex);
+		}
+		adjList.remove(vertex);
+		return true;
+	}
 }
 
 
