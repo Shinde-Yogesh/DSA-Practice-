@@ -22,6 +22,29 @@ public class Graph {
 		}
 		return false;
 	}
+	
+	// for the Edges
+	public boolean addEdges(String vertex1, String vertex2)
+	{
+		if(vertex1 != null  && vertex2 != null)
+		{
+			adjList.get(vertex1).add(vertex2);
+			adjList.get(vertex2).add(vertex1);
+			return true;
+		}
+		return false;
+	}
+	// for the remove Edges
+	public boolean removeEdges(String vertex1, String vertex2)
+	{
+		if(vertex1 != null  && vertex2 != null)
+		{
+			adjList.get(vertex1).remove(vertex2);
+			adjList.get(vertex2).remove(vertex1);
+			return true;
+		}
+		return false;
+	}
 }
 
 
