@@ -11,10 +11,18 @@ public class Main {
 		tree.insert(18);
 		tree.insert(52);
 		tree.insert(82);
-		
 		tree.insert(27);
-		System.out.println(tree.contains(27));
-		System.out.println(tree.contains(17));
+		
+		
+//		System.out.println(tree.contains(27));
+//		System.out.println(tree.contains(17));
+//		
+		//using recursive way
+		System.out.println("\nBST Contains 27");
+		System.out.println(tree.rContains(27));
+		
+		System.out.println("\nBST Contains 17");
+		System.out.println(tree.rContains(17));
 //		System.out.println(tree.root.left.right.value);
 	}
 	

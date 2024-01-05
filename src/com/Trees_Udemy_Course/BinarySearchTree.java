@@ -1,53 +1,46 @@
 package com.Trees_Udemy_Course;
 
 public class BinarySearchTree {
-	 Node root;
-	
-	class Node{
+	Node root;
+
+	class Node {
 		int value;
 		Node left;
 		Node right;
-		
-		Node(int value)
-		{
+
+		Node(int value) {
 			this.value = value;
 		}
 	}
-	
+
 	// for the insert the node
-	public boolean insert(int value)
-	{
+	public boolean insert(int value) {
 		Node newNode = new Node(value);
-		
+
 		// base case
-		if(root == null)
-		{
-			root =newNode;
+		if (root == null) {
+			root = newNode;
 			return true;
 		}
-		
-		//if not then
+
+		// if not then
 		Node temp = root;
-		while(true)
-		{
+		while (true) {
 			// IMP case if inserting value same as node in Tree return false
-			if(newNode.value == temp.value) return false;
-			
-			//for left condition
-			if(newNode.value < temp.value)
-			{
-				// if the left node is empty then 
-				if(temp.left == null)
-				{
+			if (newNode.value == temp.value)
+				return false;
+
+			// for left condition
+			if (newNode.value < temp.value) {
+				// if the left node is empty then
+				if (temp.left == null) {
 					temp.left = newNode;
 					return true;
 				}
-				//else the temp move the next node and process goes on until result not fount
+				// else the temp move the next node and process goes on until result not fount
 				temp = temp.left;
-			}else
-			{
-				if(temp.right == null)
-				{
+			} else {
+				if (temp.right == null) {
 					temp.right = newNode;
 					return true;
 				}
@@ -55,28 +48,43 @@ public class BinarySearchTree {
 			}
 		}
 	}
-	
 
-	//for the node contain the value
-	public boolean contains(int value)
-	{
-		if(root == null) return false;
-		
-		//for traveling the node 
+	// for the node contain the value
+	public boolean contains(int value) {
+		if (root == null)
+			return false;
+
+		// for traveling the node
 		Node temp = root;
-		while(temp != null)
-		{
-			//for the base if less than move left
-			if(value < temp.value)
-			{
+		while (temp != null) {
+			// for the base if less than move left
+			if (value < temp.value) {
 				temp = temp.left;
-			}else if(value > temp.value)
-			{
+			} else if (value > temp.value) {
 				temp = temp.right;
-			}else {
+			} else {
 				return true;
 			}
 		}
-		return false; 
+		return false;
+	}
+
+	// for the recursive BT
+	private boolean rContains(Node currentNode, int value) {
+		if (currentNode == null)
+			return false;
+
+		if (currentNode.value == value)
+			return true;
+
+		if (value < currentNode.value) {
+			return rContains(currentNode.left, value);
+		} else {
+			return rContains(currentNode.right, value);
+		}
+	}
+
+	public boolean rContains(int value) {
+		return rContains(root, value);
 	}
 }
