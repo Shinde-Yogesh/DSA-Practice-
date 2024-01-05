@@ -3,7 +3,7 @@ package com.Trees_Udemy_Course;
 public class Main {
 
 	public static void main(String[] args) {
-		BinarySearchTree tree = new BinarySearchTree();
+		/*BinarySearchTree tree = new BinarySearchTree();
 //		System.out.println("root : "+ tree.root);
 		tree.insert(47);
 		tree.insert(21);
@@ -24,6 +24,18 @@ public class Main {
 		System.out.println("\nBST Contains 17");
 		System.out.println(tree.rContains(17));
 //		System.out.println(tree.root.left.right.value);
+		
+		*/
+		
+		//for insertion method
+		BinarySearchTree tree = new BinarySearchTree();
+		tree.rInsert(2);
+		tree.rInsert(1);
+		tree.rInsert(3);
+		
+		System.out.println("\nRoot: "+tree.root.value);
+		System.out.println("\nRoot -> Left: "+tree.root.left.value);
+		System.out.println("\nRoot: -> Right "+tree.root.right.value);
 	}
 	
 }
