@@ -13,8 +13,15 @@ public class TreeTraversal_Main {
 		myBST.insert(52);
 		myBST.insert(82);
 
+//		System.out.println("\nDeapth Search:");
+//		System.out.println(myBST.DFSPreOrder());
+//		
+		
+//		System.out.println("\nDeapth Search:");
+//		System.out.println(myBST.DFSPostOrder());
+//		
 		System.out.println("\nDeapth Search:");
-		System.out.println(myBST.DFSPreOrder());
+		System.out.println(myBST.DFSInOrder());
 
 		/*
 		 * EXPECTED OUTPUT: ---------------- Deapth Search:
