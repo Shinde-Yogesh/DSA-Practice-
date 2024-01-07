@@ -59,3 +59,10 @@ public class LinkedList_Construct {
 		myLinkedList.printList();
 	}
 }
+
+/*   		Time Complexcity 
+	  Removing the last item from a Linked List is: O(n)
+	  Removing the first item from a Linked List is: O(1)
+  	  Finding an item by index in a Linked List is:O(n)
+        
+    */
