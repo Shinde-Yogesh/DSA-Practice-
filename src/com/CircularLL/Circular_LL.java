@@ -101,6 +101,38 @@ void print(Node tail)
             newNode.next = head;
         }
     }
+    public void deleteNode(int value)
+    {
+    
+    	if(head == null)
+    	{
+    		System.out.println("List is empty try again ");
+    		return;
+    	}else
+    	{
+    		Node prev = head;
+    		Node curr = prev.next;
+    		
+    		while(curr.data != value)
+    		{
+    			prev = curr;
+    			curr = curr.next;
+    		}
+    		prev.next = curr.next;
+    		
+    		//for the single linked list node
+    		if(curr ==prev)
+    		{
+    			head = null;
+    		}
+    		//for the >2 node case
+    		if(head == curr)
+    		{
+    			head = prev;
+    		}
+    		curr.next = null;
+    	}
+    }
 
     // Method to print the elements of the circular linked list
     public void print() {
@@ -124,10 +156,15 @@ void print(Node tail)
         // Inserting elements into the circular linked list
         circularList.insert(1);
         circularList.insert(2);
-        circularList.insert(3);
+//        circularList.insert(3);
+//        circularList.insert(4);
+//        circularList.insert(5);
 
         // Printing the elements of the circular linked list
         System.out.println("Circular Linked List:");
+        circularList.print();
+        System.out.println("Circular Linked List: After Delete Node");
+        circularList.deleteNode(2);
         circularList.print();
     }
 }
