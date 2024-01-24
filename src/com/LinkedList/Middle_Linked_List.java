@@ -22,30 +22,39 @@ public class Middle_Linked_List {
 		System.out.println("NULL");
 	}
 
-	// for the length
-	public static int length(Node head) {
-		int count = 0;
-		while (head != null) {
-			count++;
-			head = head.next;
+	/*
+	 * // for the length public static int length(Node head) { int count = 0; while
+	 * (head != null) { count++; head = head.next; } return count; }
+	 * 
+	 * //for the middle node Node findMiddleNode(Node head) { int len =
+	 * length(head); int ans = (len/2);
+	 * 
+	 * Node temp = head; int cnt = 0; while(cnt < ans) { temp = temp.next; cnt++; }
+	 * return temp; }
+	 */
+
+	// optimization code
+
+	Node findMiddleNode(Node head) {
+		if (head == null || head.next == null)
+			return head;
+
+		// for the 2 node condition
+		if (head.next.next == null)
+			return head.next;
+
+		Node slow = head;
+		Node fast = head.next;
+
+		while (fast != null) {
+			fast = fast.next;
+
+			if (fast != null) {
+				fast = fast.next;
+			}
+			slow = slow.next;
 		}
-		return count;
-	}
-	
-	//for the middle node
-	Node findMiddleNode(Node head)
-	{
-		int len = length(head);
-		int ans = (len/2);
-		
-		Node temp = head;
-		int cnt = 0;
-		while(cnt < ans)
-		{
-			temp = temp.next;
-			cnt++;
-		}
-		return temp;
+		return slow;
 	}
 
 	// Driver Code
@@ -59,9 +68,9 @@ public class Middle_Linked_List {
 
 		System.out.println("Given linked list");
 		list.printList(head);
-		System.out.println("Middle Node of linked list "+list.findMiddleNode(head).data);
+		System.out.println("Middle Node of linked list " + list.findMiddleNode(head).data);
 
-		System.out.println("Length of LL : "+length(head));
+//		System.out.println("Length of LL : "+length(head));
 	}
 
 }
