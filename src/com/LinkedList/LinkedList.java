@@ -29,10 +29,10 @@ public class LinkedList {
     public static void main(String[] args)
     {
         LinkedList list = new LinkedList();
-        list.head = new Node(85);
-        list.head.next = new Node(15);
-        list.head.next.next = new Node(4);
-        list.head.next.next.next = new Node(20);
+        LinkedList.head = new Node(85);
+        LinkedList.head.next = new Node(15);
+        LinkedList.head.next.next = new Node(4);
+        LinkedList.head.next.next.next = new Node(20);
  
         System.out.println("Given linked list");
         list.printList(head);
@@ -43,7 +43,7 @@ public class LinkedList {
     }
 
     //using linear way
-    Node reverse(Node node)
+  /*  Node reverse(Node node)
     {
         Node prev = null;
         Node current = node;
@@ -56,5 +56,18 @@ public class LinkedList {
         }
         node = prev;
         return node;
+    }*/
+    
+    //using recursion
+    Node reverse(Node head)
+    {
+    	
+    	if(head == null || head.next == null) return head;
+    	
+    	Node chotaHead = reverse(head.next);
+    	head.next.next = head;
+    	head.next = null;
+		return chotaHead;
+    	
     }
 }
