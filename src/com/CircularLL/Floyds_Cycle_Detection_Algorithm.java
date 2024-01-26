@@ -1,8 +1,10 @@
 package com.CircularLL;
 
+import java.util.HashSet;
+
 public class Floyds_Cycle_Detection_Algorithm {
 		//Solution One
-	/*
+	
 	public static class Node {
 		int data;
 		Node next;
@@ -13,7 +15,7 @@ public class Floyds_Cycle_Detection_Algorithm {
 			next = null;
 		}
 	}
-
+	
 	public static void isLoopPresent(Node head)
 	{
 		// creating two pointer
@@ -53,6 +55,31 @@ public class Floyds_Cycle_Detection_Algorithm {
 			System.out.println("Cycle is Not Present");
 		}
 	}
+	
+	public static boolean cycleDetect(Node head)
+	{
+		if(head == null)
+		    return false;
+		
+		// traverse the node
+		Node temp = head;
+		
+		//create visited HashSet 
+		 HashSet<Node> visited = new HashSet<>();
+		 while(temp != null)
+		 {
+			 if(visited.contains(temp))
+			 {
+				 return true;
+			 }	 
+			 // add the next node
+			 visited.add(temp);
+			 
+			 //move the next node
+			 temp = temp.next;
+		 }
+		 return false;
+	}
 
 	public static void main(String[] args) {
 		
@@ -79,11 +106,18 @@ public class Floyds_Cycle_Detection_Algorithm {
 	    
 	    //calling method to evaluate
 	    isLoopPresent(head);
-	}*/
+	    System.out.println(cycleDetect(head));
+	    
+	}
 	
 	
+	
+	
+	
+	
+	
+	/*
 	//Solution Second //Optimization
-
 
     public static class Node {
         int data;
@@ -147,7 +181,7 @@ public class Floyds_Cycle_Detection_Algorithm {
         } else {
             System.out.println("Start node of Loop is :" + loopNode.data);
         }
-    }
+    }*/
   //  Time complexity is O(N) where N is the number of nodes in the linked list, space complexity is O(1) as you use only two pointers.
 
 
