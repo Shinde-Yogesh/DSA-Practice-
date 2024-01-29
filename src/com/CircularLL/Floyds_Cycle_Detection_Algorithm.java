@@ -130,7 +130,44 @@ public class Floyds_Cycle_Detection_Algorithm {
 		}
 		return slow;
 	}
+	 
+	 // cycle remove 
+	 
+	 static void removeloop(Node head)
+	 {
+		 if(head == null)
+		 {
+			  return;
+		 }
+		 
+		 Node startofNode = getStartedNode(head);
+		 
+		 //temp node 
+		 Node temp = startofNode;
+		 while(temp.next != startofNode)
+		 {
+			 temp = temp.next;
+		 }
+		 temp.next = null;
+	 }
 
+	 //printing the node
+	 public static void print(Node head) {
+		 
+	        if (head == null) {
+	            System.out.println("Circular Linked List is empty.");
+	            return;
+	        }
+
+	        Node current = head;
+	        do {
+	        	if(current == null)  return ;
+	            System.out.print(current.data + " "+" -> ");
+	            current = current.next;
+	        } while (current != head);
+	        System.out.println("HEAD");
+	        System.out.println();
+	    }
 
 	public static void main(String[] args) {
 		
@@ -163,6 +200,10 @@ public class Floyds_Cycle_Detection_Algorithm {
 	
 	    Node  startedNode = getStartedNode(head);
 	    System.out.println("Cycle Starting Node  present at the : "+ startedNode.data);
+	    removeloop(head);
+	    
+	    print(head);
+	  
 	  
 	}
 	
