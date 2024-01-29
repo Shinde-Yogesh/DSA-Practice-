@@ -3,6 +3,9 @@ package com.CircularLL;
 import java.util.HashSet;
 
 public class Floyds_Cycle_Detection_Algorithm {
+		private static Node startedNode;
+
+
 		//Solution One
 	
 	public static class Node {
@@ -70,6 +73,7 @@ public class Floyds_Cycle_Detection_Algorithm {
 		 {
 			 if(visited.contains(temp))
 			 {
+				 System.out.println("Node present at the node : "+temp.data);
 				 return true;
 			 }	 
 			 // add the next node
@@ -80,6 +84,53 @@ public class Floyds_Cycle_Detection_Algorithm {
 		 }
 		 return false;
 	}
+	
+	
+	// for the fistNode in cycle using 
+	//floydsDetection method and get started Node
+	static //for the staring node return 
+	
+	Node floydsDetection(Node head)
+	{
+		if(head == null) return null;
+		
+		Node fastpointer= head;
+		Node slowPointer = head;
+		
+		while(slowPointer != null && fastpointer != null)
+		{
+			fastpointer = fastpointer.next;
+			
+			if(fastpointer != null)
+			{
+				fastpointer = fastpointer.next;
+			}
+			
+			slowPointer = slowPointer.next;
+			
+			if(slowPointer == fastpointer)
+			{
+				return slowPointer;
+			}
+		}
+		return null;
+	}
+	
+	 static Node getStartedNode(Node head)
+	{
+		if(head == null) return null;
+		
+		Node intersectionNode = floydsDetection(head);
+		Node slow = head;
+		
+		while(slow != intersectionNode)
+		{
+			slow = slow.next;
+			intersectionNode = intersectionNode.next;
+		}
+		return slow;
+	}
+
 
 	public static void main(String[] args) {
 		
@@ -105,9 +156,14 @@ public class Floyds_Cycle_Detection_Algorithm {
 	    NodeEight.next = NodeThree;
 	    
 	    //calling method to evaluate
-	    isLoopPresent(head);
-	    System.out.println(cycleDetect(head));
-	    
+//	    isLoopPresent(head);
+//	    System.out.println(cycleDetect(head));
+//	    System.out.println(cycleDetect(head));
+	    System.out.println("Cycle present at the node : "+floydsDetection(head).data);
+	
+	    Node  startedNode = getStartedNode(head);
+	    System.out.println("Cycle Starting Node  present at the : "+ startedNode.data);
+	  
 	}
 	
 	
