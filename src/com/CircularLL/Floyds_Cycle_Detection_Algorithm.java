@@ -169,54 +169,8 @@ public class Floyds_Cycle_Detection_Algorithm {
 	        System.out.println();
 	    }
 	 
-	 static Node removeDuplicateNode(Node head)
-	 {
-		 if(head  == null)
-		 {
-			 return null;
-		 }
-		 
-		 //store the temp 
-		 Node curr = head;
-		 
-		 while(curr != null)
-		 {
-			 if((curr.next !=null) && curr.data == curr.next.data)
-			 {
-				 
-				 //create the node of next node
-				 Node next_next = curr.next.next;
-				 
-				 //point to the node which have to delete
-				 Node nodeToDelete = curr.next;
-				 nodeToDelete = null;
-				 
-				 // assign the curr node to the curr.next.nxt == next_next
-				 curr.next = next_next;
-			 }else
-			 {
-				 curr = curr.next;
-			 }
-		 }
-		 return head;
-	 }
-	 
-	 
 
 	public static void main(String[] args) {
-		/*
-		Node NodeOne = new Node(1);
-		Node NodeTwo = new Node(2);
-		Node NodeThree = new Node(3);
-		Node NodeFour = new Node(4);
-		Node NodeFive = new Node(5);
-		Node NodeSix = new Node(6);
-		Node NodeSeven = new Node(7);
-		Node NodeEight = new Node(8);
-		
-		*/
-		
-		// for the duplicate LL
 		Node NodeOne = new Node(1);
 		Node NodeTwo = new Node(2);
 		Node NodeThree = new Node(3);
