@@ -1,8 +1,6 @@
-package com.CircularLL;
+package com.LinkedList;
 
 import java.util.HashSet;
-
-import com.CircularLL.Floyds_Cycle_Detection_Algorithm.Node;
 
 public class Remove_Duplicate_LL {
 
