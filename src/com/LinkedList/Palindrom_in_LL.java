@@ -16,6 +16,23 @@ public class Palindrom_in_LL {
 	}
 
 	// printing the node
+	public static void print_for_CLL(Node head) {
+
+		if (head == null) {
+			System.out.println("Circular Linked List is empty.");
+			return;
+		}
+
+		Node current = head;
+		while (current != null) {
+			System.out.print(current.data + " -> ");
+			current = current.next;
+		}
+		System.out.println("NULL");
+		System.out.println();
+	}
+	
+	
 	public static void print(Node head) {
 
 		if (head == null) {
@@ -108,12 +125,113 @@ public class Palindrom_in_LL {
 
 		return true;
 	}
+	
+	// Aprroach 2
+	
+	static Node getmiddleNode(Node head)
+	{
+		Node fast = head.next;
+		Node slow = head;
+		
+		while(fast != null && fast.next != null)
+		{
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		return slow;
+	}
+	
+	public static boolean isPalindromApproch_2(Node head) {
+		if(head ==null || head.next ==null)
+		{
+			return true;
+		}
+		
+		//get Middle node for reverse the ll
+		Node middle=  getmiddleNode(head);
+		Node temp = middle.next;
+		middle.next = reverse(temp);
+		
+		
+		//for compare
+		Node head1 = head;
+		Node head2 = middle.next;
+		
+		while(head2 != null)
+		{
+			if(head1.data != head2.data)
+			{
+				return false;
+			}
+			head1 = head1.next;
+			head2 = head2.next;
+		}
+		//repreate step 2
+		
+		temp = middle.next;
+		middle.next = reverse(temp);
+		return true;
+		
+	}
+
+	private static Node reverse(Node head) {
+		Node curr = head;
+		Node prev = null;
+		Node next = null;
+		
+		while(curr != null)
+		{
+			next = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = next;
+		}
+		return prev;
+	}
+	
+	static  String convertToString(Node head)
+	    {
+	        StringBuilder s= new StringBuilder();
+	        Node cur=head;
+	        while(cur!=null)
+	        {
+	            s.append(Integer.toString(cur.data));
+	            cur=cur.next;
+	        }
+	        return s.toString();
+	    }
+	    
+	    
+	   static boolean isPalindrome(Node head) 
+	    {
+	        if(head.next==null)
+	            return true;   //LL of length 1
+	            
+	        String s1=convertToString(head);
+	        
+	        Node prev=null,curr=head;
+	        while(curr!=null)
+	        {
+	            Node temp=curr.next;
+	            curr.next=prev;
+	            prev=curr;
+	            curr=temp;
+	        }
+	        //prev is head now
+	        
+	        String s2=convertToString(prev);
+	        
+	        if(s1.equals(s2))
+	            return true;
+	        return false;
+	    
+	    }    
 
 	public static void main(String[] args) {
 
 		Node NodeOne = new Node(1);
 		Node NodeTwo = new Node(2);
-		Node NodeThree = new Node(3);
+		Node NodeThree = new Node(1);
 //		Node NodeFour = new Node(2);
 //		Node NodeFive = new Node(3);
 //		Node NodeSix = new Node(1);
@@ -133,8 +251,10 @@ public class Palindrom_in_LL {
 //		
 //		removeDuplicateUnordered(head);
 //		System.out.println("After the applied the method ");
-		System.out.println(isPalindrom(head));
 		print(head);
+		System.out.println(isPalindromApproch_2(head));
+		System.out.println(isPalindrome(head));
+		
 
 	}
 
