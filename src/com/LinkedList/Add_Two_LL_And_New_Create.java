@@ -1,135 +1,106 @@
 package com.LinkedList;
 
 public class Add_Two_LL_And_New_Create {
-	static class Node {
+    static class Node {
+        int data;
+        Node next;
 
-		int data;
-		Node next;
+        Node(int d) {
+            data = d;
+            next = null;
+        }
+    }
 
-		Node(int d) {
-			data = d;
-			next = null;
-		}
-	}
+    static Node addTwoLists(Node first, Node second) {
+        // Reverse input linked lists
+        first = reverse(first);
+        second = reverse(second);
 
-	static Node addTwoLists(Node first, Node second) {
-		// code here
-		// return head of sum list
-		first = reverseList(first);
-		second = reverseList(second);
-		Node res = null, cur1 = first, cur2 = second, cur = null;
-		int carry = 0;
-		while (cur1 != null && cur2 != null) {
-			int sum = cur1.data + cur2.data + carry;
-			Node n = new Node(sum % 10);
-			carry = sum / 10;
-			if (res == null) {
-				res = cur = n;
-			} else {
-				cur.next = n;
-				cur = cur.next;
-			}
-			cur1 = cur1.next;
-			cur2 = cur2.next;
-		}
-		while (cur1 != null) {
-			int sum = cur1.data + carry;
-			Node n = new Node(sum % 10);
-			carry = sum / 10;
-			cur.next = n;
-			cur = cur.next;
-			cur1 = cur1.next;
-		}
-		while (cur2 != null) {
-			int sum = cur2.data + carry;
-			Node n = new Node(sum % 10);
-			carry = sum / 10;
-			cur.next = n;
-			cur = cur.next;
-			cur2 = cur2.next;
-		}
-		if (carry > 0) {
-			Node n = new Node(carry);
-			cur.next = n;
-		}
-		return reverseList(res);
-	}
+        Node res = null, cur = null;
+        int carry = 0;
 
-	static Node reverseList(Node head) {
-		if (head.next == null)
-			return head;
-		Node temp = head.next;
-		Node newHead = reverseList(temp);
-		temp.next = head;
-		head.next = null;
-		return newHead;
-	}
+        // Traverse both lists
+        while (first != null || second != null || carry > 0) {
+            int sum = (first != null ? first.data : 0) + (second != null ? second.data : 0) + carry;
+            carry = sum / 10;
 
-	public static void print(Node head) {
+            Node newNode = new Node(sum % 10);
 
-		if (head == null) {
-			System.out.println("Linked List is empty.");
-			return;
-		}
+            if (res == null) {
+                res = cur = newNode;
+            } else {
+                cur.next = newNode;
+                cur = cur.next;
+            }
 
-		Node current = head;
-		while (current != null) {
-			System.out.print(current.data + " -> ");
-			current = current.next;
-		}
-		System.out.println("NULL");
-		System.out.println();
-	}
+            if (first != null) first = first.next;
+            if (second != null) second = second.next;
+        }
 
-	public static void main(String[] args) {
+        // Reverse the result before returning
+        return reverse(res);
+    }
 
-		Node NodeOne = new Node(1);
-		Node NodeTwo = new Node(2);
-		Node NodeThree = new Node(3);
-		Node NodeFour = new Node(4);
-		Node NodeFive = new Node(5);
-		Node NodeSix = new Node(6);
+    static Node reverse(Node head) {
+        Node prev = null, current = head, next = null;
 
-		Node head = NodeOne;
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
 
-		NodeOne.next = NodeTwo;
-		NodeTwo.next = NodeThree;
-		NodeThree.next = NodeFour;
-		NodeFour.next = NodeFive;
-		NodeFive.next = NodeSix;
-		NodeSix.next = null;
+        return prev;
+    }
 
-		// new Linked List create
-		Node sampleOne = new Node(1);
-		Node sampleTwo = new Node(2);
-		Node sampleThree = new Node(3);
-		Node sampleFour = new Node(4);
+    public static void print(Node head) {
+        if (head == null) {
+            System.out.println("Linked List is empty.");
+            return;
+        }
 
-		Node sampleHead = sampleOne;
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        }
+        System.out.println("NULL");
+        System.out.println();
+    }
 
-		sampleOne.next = sampleTwo;
-		sampleTwo.next = sampleThree;
-		sampleThree.next = sampleFour;
-		sampleFour.next = null;
-//		
-//		Node result = addTwoLists(NodeOne, sampleOne);
-//		
-//		while(result != null)
-//		{
-//			System.out.println("The result : "+result.data);
-//			result  = result.next;
-//		}
-		print(head);
-//		System.out.println();
-		print(sampleHead);
+    public static void main(String[] args) {
+        Node NodeOne = new Node(1);
+        Node NodeTwo = new Node(2);
+        Node NodeThree = new Node(3);
+        Node NodeFour = new Node(4);
+        Node NodeFive = new Node(5);
+        Node NodeSix = new Node(6);
 
-		Node result = addTwoLists(NodeOne, sampleOne);
+        Node head = NodeOne;
+        NodeOne.next = NodeTwo;
+        NodeTwo.next = NodeThree;
+        NodeThree.next = NodeFour;
+        NodeFour.next = NodeFive;
+        NodeFive.next = NodeSix;
+        NodeSix.next = null;
 
-		while (result != null) {
-			System.out.print(result.data + " -> ");
-			result = result.next;
-		}
-		System.out.println("NULL");
-	}
+        Node sampleOne = new Node(1);
+        Node sampleTwo = new Node(2);
+        Node sampleThree = new Node(3);
+        Node sampleFour = new Node(4);
 
+        Node sampleHead = sampleOne;
+        sampleOne.next = sampleTwo;
+        sampleTwo.next = sampleThree;
+        sampleThree.next = sampleFour;
+        sampleFour.next = null;
+
+        print(head);
+        print(sampleHead);
+
+        Node result = addTwoLists(NodeOne, sampleOne);
+
+        print(result);
+    }
 }
