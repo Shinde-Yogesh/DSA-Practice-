@@ -90,6 +90,54 @@ package com.LinkedList;
 	        return true;
 	    }
 
+	    
+//	    2nd Approach 
+
+	    Node copyList(Node head) {
+	            // your code here
+	            //TC O(n) SC O(1)
+	            copyBetween(head); 
+	            connectRandomPonits(head);
+	            return getDeepCopy(head);
+	        }
+	        public static void copyBetween(Node head)
+	        {
+
+	            Node temp=head;
+	            while(temp!=null)
+	            {
+	                Node newNode = new Node(temp.data);
+	                newNode.next=temp.next;
+	                temp.next=newNode;
+	                temp=temp.next.next;
+	            }
+	        }
+	        public static void connectRandomPonits(Node head)
+	        {
+	            Node temp=head;
+	            while(temp!=null)
+	            {
+	                if(temp.arb !=null)
+	                {
+	                   temp.next.arb=temp.arb.next;
+	                }
+	                temp=temp.next.next;
+	            }
+	        }
+	        public static Node getDeepCopy(Node head)
+	        {
+	           Node dummy=new Node(-1);
+	            Node res=dummy;
+	            Node temp=head;
+	            while(temp!=null)
+	            {
+	                res.next = temp.next;
+	                temp.next=temp.next.next;
+	                res=res.next;
+	                temp=temp.next;
+	            }
+	            return dummy.next;
+	        }
 	    public static void main(String[] args) {
 	        Scanner sc = new Scanner(System.in);
 	        int t = sc.nextInt();
