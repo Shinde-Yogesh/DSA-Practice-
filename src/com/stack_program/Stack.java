@@ -63,12 +63,14 @@ public class Stack {
 	}
 	
 	//print the array
-	public static void printArray(int array[])
+	public static void printStack(Stack st)
 	{
-		for(int i = 0; i<array.length-1;i++)
+		while(!st.isEmpty())
 		{
-			System.out.print(array[i]+ " ");
+			System.out.print(st.peek() +" ");
+			st.pop();
 		}
+		
 	}
 
 	public static void main(String[] args) {
@@ -78,8 +80,10 @@ public class Stack {
 		st.push(66);
 		st.push(88);
 		st.push(100);
-		System.out.println(st.peek());
-		st.pop();
-		System.out.println(st.peek());
+		
+//		System.out.println(st.peek());
+//		st.pop();
+//		System.out.println(st.peek());
+		printStack(st);
 	}
 }
