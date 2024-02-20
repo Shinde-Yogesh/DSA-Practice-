@@ -7,22 +7,22 @@ public class Delete_Middle_Element {
 	 // Deletes middle of stack of size
     // n. Curr is current item number
     static void deleteMid(Stack<Integer> st,
-                              int n, int curr)
+                              int size, int curr)
     {
          
         // If stack is empty or all items
         // are traversed
-        if (st.empty() || curr == n)
+        if (st.empty() || curr == size)
             return;
          
         // Remove current item
         int x = st.pop();
          
         // Remove other items
-        deleteMid(st, n, curr+1);
+        deleteMid(st, size, curr+1);
          
         // Put all items back except middle
-        if (curr != n/2)
+        if (curr != size/2)
             st.push(x);
     }
      
