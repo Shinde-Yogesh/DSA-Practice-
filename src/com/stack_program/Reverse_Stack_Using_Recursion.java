@@ -3,7 +3,7 @@ package com.stack_program;
 import java.util.Stack;
 public class Reverse_Stack_Using_Recursion {
 
-	
+	/*
 	public static void reverseStack(Stack<Integer> stack) {
         if (!stack.isEmpty()) {
             // Remove the top element
@@ -27,7 +27,21 @@ public class Reverse_Stack_Using_Recursion {
             // Push back the removed element
             stack.push(temp);
         }
-    }
+    }*/
+	
+			public static void reverseStack(Stack<Integer> stack) {
+						// write your code here
+				if(stack.isEmpty()){
+					return;
+				}
+				 int temp=stack.pop();
+				 System.out.print(temp+ " ");
+				
+				 
+				reverseStack(stack);
+		
+					}
+
     	
     public static void main(String[] args) {
         Stack<Integer> stack = new Stack<>();
@@ -39,8 +53,8 @@ public class Reverse_Stack_Using_Recursion {
 
         System.out.println("Original Stack: " + stack);
 
-        reverseStack(stack);
+        
 
-        System.out.println("Reversed Stack: " + stack);
+        System.out.print("Reversed Stack: "+ " "); reverseStack(stack);
     }
 }
