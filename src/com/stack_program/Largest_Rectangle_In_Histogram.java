@@ -5,6 +5,7 @@ import java.util.Stack;
 
 public class Largest_Rectangle_In_Histogram {
 
+	/*
 	public static int largest(ArrayList<Integer> height)
 	{
 		int n = height.size();
@@ -100,16 +101,80 @@ public class Largest_Rectangle_In_Histogram {
 		
 		return ans;
 	}
+	*/
+	
+	
+	public static int largestRectangleArea(int[] heights) {
+        int n = heights.length;
+
+        int[] next = nextSmallestElement(heights, n);
+        int[] prev = prevSmallestElement(heights, n);
+
+        int maxArea = 0;
+
+        for (int i = 0; i < n; i++) {
+            int height = heights[i];
+            int width = next[i] - prev[i] - 1;
+            int area = height * width;
+            maxArea = Math.max(maxArea, area);
+        }
+
+        return maxArea;
+    }
+
+    private static int[] nextSmallestElement(int[] arr, int n) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(-1);
+
+        int[] result = new int[n];
+
+        for (int i = n - 1; i >= 0; i--) {
+            int curr = arr[i];
+
+            while (!stack.isEmpty() && curr <= arr[stack.peek()]) {
+                stack.pop();
+            }
+
+            result[i] = stack.peek();
+            stack.push(i);
+        }
+
+        return result;
+    }
+
+    private static int[] prevSmallestElement(int[] arr, int n) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(-1);
+
+        int[] result = new int[n];
+
+        for (int i = 0; i < n-1; i++) {
+            int curr = arr[i];
+
+            while (!stack.isEmpty() && curr <= arr[stack.peek()]) {
+                stack.pop();
+            }
+
+            result[i] = stack.peek();
+            stack.push(i);
+        }
+
+        return result;
+    }
 	public static void main(String[] args) {
-		ArrayList<Integer> list = new ArrayList<>();
-		list.add(2);
-		list.add(1);
-		list.add(5);
-		list.add(6);
-		list.add(2);
-		list.add(3);
+//		ArrayList<Integer> list = new ArrayList<>();
+//		list.add(2);
+//		list.add(1);
+//		list.add(5);
+//		list.add(6);
+//		list.add(2);
+//		list.add(3);
+//		
+//		System.out.println(list);
+//		System.out.println(largest(list));
 		
-		System.out.println(list);
-		System.out.println(largest(list));
+		  int[] heights = {2, 1, 5, 6, 2, 3};
+		  System.out.println("Input heights: " + java.util.Arrays.toString(heights));
+	      System.out.println("Largest rectangle area: " + largestRectangleArea(heights));
 	}
 }
