@@ -1,6 +1,6 @@
 package com.queue_program;
 
-/*public class Queue_Imple_Using_Array {
+public class Queue_Imple_Using_Array {
 	int array[];
 	int qfront;
 	int rear;
@@ -97,16 +97,16 @@ package com.queue_program;
 			System.out.print(i+ " ");
 		}
 		
-	}*/
+	}
 	
-	
+}
 	/*
     Time complexity: O(q)
     Space complexity: O(q)
 
     Where q is the number of queries.
 */
-
+/*
 class Node {
 
     int data;
@@ -210,6 +210,6 @@ public class Queue_Imple_Using_Array {
     	obj.print();
 	}
 
-}
+}*/
 
-//}
+
