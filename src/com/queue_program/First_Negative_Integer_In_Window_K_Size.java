@@ -1,65 +1,43 @@
 package com.queue_program;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
+import java.io.IOException;
 
 public class First_Negative_Integer_In_Window_K_Size {
-	public static  ArrayList<Integer> printFirstNegativeInteger(Long[] a, int N, int K) {
-		// creating the double ended queue for first 2 integer then for next 2
-		Deque<Integer> queue = new ArrayDeque<>();
-		// for storing the result
 
-		ArrayList<Integer> list = new ArrayList<>();
+	public static long[] printFirstNegativeInteger(long[] a, int N, int K) {
 
-		// for traverse through n size
-		for (int i = 0; i < K; i++) {
-			if (a[i] > 0) {
-				queue.push(i);
+		long arr[] = new long[N - K + 1];
+
+		for (int i = 0; i < N - K + 1; i++) {
+			for (int j = i; j < i + K; j++) {
+				if (a[j] < 0) {
+					arr[i] = a[j];
+					break;
+				}
 			}
 		}
 
-		// store answer of K sized window
-
-		if (queue.size() > 0) {
-			long l = a[queue.removeFirst()];
-			list.add((int) l);
-		} else {
-			list.add(0);
-		}
-		
-		//processing for remaining windows
-		for(int i =K;i<N;i++)
-		{
-			//removal
-			if(queue.isEmpty() && i - queue.removeFirst()>= K)
-			{
-				queue.removeFirst();
-			}
-			
-			//addition
-			if(a[i] < 0)
-			{
-				queue.push(i);
-			}
-			
-			//ans store
-			
-			if(queue.size() > 0)
-			{
-				long l = a[queue.removeFirst()];
-				list.add((int) l);
-			}else
-			{
-				list.add(0);
-			}
-		}
-		return list;
+		return arr;
 	}
-	public static void main(String[] args) {
+
+	public static void main(String[] args) throws IOException {
 		int N = 5;
-		Long A[] = {-8L, 2L, 3L, -6L, 10L};
-		int K =2;
-		printFirstNegativeInteger(A,N,K);
+		long A[] = { -8, 2, 3, -6, 10 };
+		int k = 2;
+		long[] printFirstNegativeInteger = printFirstNegativeInteger(A, N, k);
+
+		for (long l : printFirstNegativeInteger) {
+			System.out.print(l + " ");
+		}
 	}
 }
+/*
+  		
+  					Brute Force Approach:
+
+					Iterates through each window of size k in the array.
+					For each window, checks if there exists a negative element.
+					If a negative element is found, it's stored as the result for that window.
+					Time complexity is high (results in Time Limit Exceeded) due to nested loops and redundant iterations.
+					  		
+  		*/
