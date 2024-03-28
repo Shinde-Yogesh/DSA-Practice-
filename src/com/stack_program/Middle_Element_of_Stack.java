@@ -5,16 +5,15 @@ import java.util.Stack;
 public class Middle_Element_of_Stack {
 
 	public static void middle_element(Stack<Integer> s, int sizeOfStack) {
-		 
-        int mid =  sizeOfStack/2;
-        Stack<Integer>st = new Stack<>();
-        for(int i = 1; i <= mid+1; i++){
-            st.push(s.pop());
-        }
-        st.pop();
-        while(!st.isEmpty()){
-            s.push(st.pop());
-        }
+		int mid = (sizeOfStack + 1) / 2;
+
+		if (s.size() == mid) {
+			s.pop();
+		} else {
+			int tmp = s.pop();
+			middle_element(s, sizeOfStack);
+			s.push(tmp);
+		}
 		System.out.println(s);
 	}
 
