@@ -66,9 +66,9 @@ public class Get_Minimum {
 		Get_Minimum stack = new Get_Minimum();
 	        Get_Minimum.push(13);
 	        Get_Minimum.push(47);
-	        System.out.println(stack.pop()); // Output: 47
+//	        System.out.println(stack.pop()); // Output: 47
 	        Get_Minimum.push(8);
-	        stack.pop();
+//	        stack.pop();
 	        System.out.println(stack.getMini()); // Output: 13
 	}
 }
