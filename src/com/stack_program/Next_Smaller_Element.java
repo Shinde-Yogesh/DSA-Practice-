@@ -75,9 +75,6 @@ public class Next_Smaller_Element {
         list.add(3);
        
         System.out.println("Original Stack: " + list);
-
-       
-
         System.out.print("After the output"+ nextSmallerElement(list,list.size())); 
     }
 }
