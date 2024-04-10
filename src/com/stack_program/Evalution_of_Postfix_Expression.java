@@ -81,7 +81,7 @@ public class Evalution_of_Postfix_Expression {
         }
 
 	public static void main(String[] args) {
-		String S = "123+*8-";
+		String S = " ";
 		int result = evaluatePostFix(S);
 		System.out.println("Result of postfix expression " + S + " is: " + result);
 	}
