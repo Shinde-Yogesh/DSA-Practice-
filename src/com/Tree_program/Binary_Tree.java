@@ -4,76 +4,73 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;
 
-class Node {
-	int data;
-	Node left;
-	Node right;
-
-	// constructor
-	public Node(int data) {
-		this.data = data;
-		this.left = null;
-		this.right = null;
-	}
-}
-
 public class Binary_Tree {
+	static class Node {
+        int data;
+        Node left;
+        Node right;
 
-	public Node buildTree(Node root) {
-		System.out.println("Enter the data : ");
-		Scanner sc = new Scanner(System.in);
-		int data = sc.nextInt();
-		root = new Node(data);
+        // Constructor
+        public Node(int data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
 
-		if (data == -1) {
-			return null;
-		}
+    public Node buildTree() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the data : ");
+        int data = sc.nextInt();
 
-		System.out.println("Enter the data for inserting in left node " + data);
-		root.left = buildTree(root.left);
-		System.out.println("Enter the data for inserting in Right node" + data);
-		root.right = buildTree(root.right);
+        if (data == -1) {
+            return null; // Return null to indicate no node
+        }
 
-		return root;
+        Node root = new Node(data); // Create the root node
 
-	}
+        // Build left subtree
+        System.out.println("Enter the data for inserting in left node " + data);
+        root.left = buildTree();
 
-	public static void levelOrderTraversal(Node root) {
-		if (root == null) {
-			return; // If the tree is empty
-		}
+        // Build right subtree
+        System.out.println("Enter the data for inserting in right node " + data);
+        root.right = buildTree();
 
-		Queue<Node> queue = new ArrayDeque<>();
-		queue.add(root);
+        return root; // Return the constructed subtree
+    }
 
-		while (!queue.isEmpty()) {
-			Node temp = queue.remove();
-			System.out.print(temp.data + " ");
+    void levelOrderTraversal(Node root) {
+        if (root == null) {
+            return; // If the tree is empty
+        }
 
-			// Check and add left child if not null
-			if (temp.left != null) {
-				queue.add(temp.left);
-			}
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(root);
 
-			// Check and add right child if not null
-			if (temp.right != null) {
-				queue.add(temp.right);
-			}
-		}
-	}
+        while (!queue.isEmpty()) {
+            Node temp = queue.poll();
 
-	public static void main(String[] args) {
-		// Create a sample binary tree
-		Node root = new Node(1);
-		root.left = new Node(3);
-		root.right = new Node(5);
-		root.left.left = new Node(7);
-		root.left.right = new Node(11);
-		root.right.left = new Node(17);
-		
+            System.out.print(temp.data + " ");
+           
 
-		// Perform level order traversal
-		System.out.println("Level Order Traversal:");
-		levelOrderTraversal(root);
-	}
+            if (temp.left != null) {
+                queue.add(temp.left);
+            }
+
+            if (temp.right != null) {
+                queue.add(temp.right);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Binary_Tree obj = new Binary_Tree();
+        Node root = obj.buildTree(); // Build the binary tree
+        // Input for building tree: 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+
+        // Level order traversal
+        System.out.println("Printing the levelOrder traversal output:");
+        obj.levelOrderTraversal(root);
+    }
 }
