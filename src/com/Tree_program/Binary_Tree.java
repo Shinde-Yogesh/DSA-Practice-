@@ -47,12 +47,10 @@ public class Binary_Tree {
 
         Queue<Node> queue = new ArrayDeque<>();
         queue.add(root);
-
         while (!queue.isEmpty()) {
             Node temp = queue.poll();
 
             System.out.print(temp.data + " ");
-           
 
             if (temp.left != null) {
                 queue.add(temp.left);
@@ -63,14 +61,38 @@ public class Binary_Tree {
             }
         }
     }
-
+    
+    
+    //Inorder Traversal
+    
+    public void inorder(Node root)
+    {
+    	//base cases
+    	if(root == null)
+    	{
+    		return;
+    	}
+    	
+    	// LNR
+    	inorder(root.left);
+    	System.out.print(root.data+ " ");
+    	inorder(root.right);
+    }
     public static void main(String[] args) {
         Binary_Tree obj = new Binary_Tree();
-        Node root = obj.buildTree(); // Build the binary tree
-        // Input for building tree: 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+        Node root = obj.buildTree(); // Construct the binary tree and assign the returned root
 
-        // Level order traversal
-        System.out.println("Printing the levelOrder traversal output:");
-        obj.levelOrderTraversal(root);
+        //1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+        
+        if (root != null) {
+            // Level order traversal
+            System.out.println("Printing the levelOrder traversal output:");
+            obj.levelOrderTraversal(root);
+        } else {
+            System.out.println("Binary tree is empty.");
+        }
+        System.out.println();
+        System.out.println("Inorder Traversal : ");
+        obj.inorder(root);
     }
 }
