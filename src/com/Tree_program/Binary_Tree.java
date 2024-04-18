@@ -78,6 +78,20 @@ public class Binary_Tree {
     	System.out.print(root.data+ " ");
     	inorder(root.right);
     }
+    
+    //preorder traversal
+    //LRN
+    public void preorder(Node root)
+    {
+    	//base case
+    	if(root == null)
+    	{
+    		return ;
+    	}
+    	System.out.print(root.data+ " ");
+    	preorder(root.left);
+    	preorder(root.right);
+    }
     public static void main(String[] args) {
         Binary_Tree obj = new Binary_Tree();
         Node root = obj.buildTree(); // Construct the binary tree and assign the returned root
@@ -92,7 +106,13 @@ public class Binary_Tree {
             System.out.println("Binary tree is empty.");
         }
         System.out.println();
+        
         System.out.println("Inorder Traversal : ");
         obj.inorder(root);
+        
+        System.out.println();
+        System.out.println("Preorder Traversal : ");
+        obj.preorder(root);
+        
     }
 }
