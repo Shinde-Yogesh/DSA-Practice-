@@ -92,6 +92,21 @@ public class Binary_Tree {
     	preorder(root.left);
     	preorder(root.right);
     }
+    
+    
+    //postorder traversal
+    public void postorder(Node root)
+    {
+    	//base case
+    	if(root == null)
+    	{
+    		return ;
+    	}
+    	
+    	postorder(root.left);
+    	postorder(root.right);
+    	System.out.print(root.data+ " ");
+    }
     public static void main(String[] args) {
         Binary_Tree obj = new Binary_Tree();
         Node root = obj.buildTree(); // Construct the binary tree and assign the returned root
@@ -111,8 +126,14 @@ public class Binary_Tree {
         obj.inorder(root);
         
         System.out.println();
+        
         System.out.println("Preorder Traversal : ");
         obj.preorder(root);
+        
+        System.out.println();
+        
+        System.out.println("Postorder Traversal : ");
+        obj.postorder(root);
         
     }
 }
