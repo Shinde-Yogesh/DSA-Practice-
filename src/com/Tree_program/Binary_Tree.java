@@ -155,6 +155,7 @@ public class Binary_Tree {
     	}
     	return root; //return the root for the constructor tree
     }
+    
     public static void main(String[] args) {
         Binary_Tree obj = new Binary_Tree();
    
