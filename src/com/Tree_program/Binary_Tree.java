@@ -42,6 +42,7 @@ public class Binary_Tree {
 
     void levelOrderTraversal(Node root) {
         if (root == null) {
+        	System.out.println("Tree is Empty");
             return; // If the tree is empty
         }
 
@@ -107,8 +108,59 @@ public class Binary_Tree {
     	postorder(root.right);
     	System.out.print(root.data+ " ");
     }
+    
+    
+    //tree made from input
+    Node buildFromLevelOrder()
+    {
+    	Queue<Node> queue = new ArrayDeque<Node>();
+    	
+    	System.out.println("Enter the data for root :");
+    	
+    	Scanner sc = new Scanner(System.in);
+    	int rootData = sc.nextInt();
+    	
+    	if(rootData == -1)
+    	{
+    		return null;
+    	}
+    	
+    	Node root = new Node(rootData);
+    
+    	queue.add(root);
+    	
+    	while(!queue.isEmpty())
+    	{
+    		Node temp = queue.poll();
+    		
+    		
+    		System.out.println("Enter the data for the left node : "+temp.data);
+    		
+    		int leftData = sc.nextInt();
+    		if(leftData != -1)
+    		{
+    			temp.left = new Node(leftData);
+    			queue.add(temp.left);
+    		}
+    		
+    		
+    		System.out.println("Enter the data for the Right node : "+temp.data);
+    		
+    		int rightData = sc.nextInt();
+    		if(rightData != -1)
+    		{
+    			temp.right = new Node(rightData);
+    			queue.add(temp.right);
+    		}
+    	}
+    	return root; //return the root for the constructor tree
+    }
     public static void main(String[] args) {
         Binary_Tree obj = new Binary_Tree();
+   
+        Node buildFromLevelOrder = obj.buildFromLevelOrder();
+        obj.levelOrderTraversal(buildFromLevelOrder);
+        /*
         Node root = obj.buildTree(); // Construct the binary tree and assign the returned root
 
         //1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
@@ -134,6 +186,7 @@ public class Binary_Tree {
         
         System.out.println("Postorder Traversal : ");
         obj.postorder(root);
+        */
         
     }
 }
