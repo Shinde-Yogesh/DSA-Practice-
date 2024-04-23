@@ -95,6 +95,7 @@ public class Check_For_Balaned_Tree {
 	}
 }*/
 
+/*
 public class Check_For_Balaned_Tree {
 	static class Node {
 		int data;
@@ -178,5 +179,94 @@ public class Check_For_Balaned_Tree {
 		Node root = obj.buildTree();
 		System.out.println(isBalanced(root));
 
+	}
+}*/
+
+static class Node {
+	int data;
+	Node left;
+	Node right;
+
+	// Constructor
+	public Node(int data) {
+		this.data = data;
+		this.left = null;
+		this.right = null;
+	}
+}
+
+public class Check_For_Balaned_Tree {
+// Function to calculate height of a subtree
+	int height(Node node) {
+		// Base case: If node is null, height is 0
+		if (node == null) {
+			return 0;
+		}
+
+		// Recursively calculate height of left and right subtrees
+		int leftHeight = height(node.left);
+		int rightHeight = height(node.right);
+
+		// Height of current node is maximum height of left or right subtree + 1
+		return Math.max(leftHeight, rightHeight) + 1;
+	}
+
+// Function to check whether a binary tree is balanced or not
+	boolean isBalanced(Node root) {
+		// Base case: If tree is empty, it's balanced
+		if (root == null) {
+			return true;
+		}
+
+		// Recursively check balance and calculate heights of left and right subtrees
+		int leftHeight = height(root.left);
+		int rightHeight = height(root.right);
+
+		// Check if current subtree is balanced
+		boolean currentIsBalanced = Math.abs(leftHeight - rightHeight) <= 1;
+
+		// Recursively check balance of left and right subtrees
+		boolean leftIsBalanced = isBalanced(root.left);
+		boolean rightIsBalanced = isBalanced(root.right);
+
+		// The tree is balanced if current subtree is balanced and both left and right
+		// subtrees are balanced
+		return currentIsBalanced && leftIsBalanced && rightIsBalanced;
+	}
+
+// Method to build a binary tree based on user input
+	public Node buildTree() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the data : ");
+		int data = sc.nextInt();
+
+		if (data == -1) {
+			return null; // Return null to indicate no node
+		}
+
+		Node root = new Node(data); // Create the root node
+
+		// Build left subtree
+		System.out.println("Enter the data for inserting in left node " + data);
+		root.left = buildTree();
+
+		// Build right subtree
+		System.out.println("Enter the data for inserting in right node " + data);
+		root.right = buildTree();
+
+		return root; // Return the constructed subtree
+	}
+
+// Main method for testing
+	public static void main(String[] args) {
+		Check_For_Balaned_Tree solution = new Check_For_Balaned_Tree();
+		Node root = solution.buildTree();
+
+		boolean balanced = solution.isBalanced(root);
+		if (balanced) {
+			System.out.println("The tree is height balanced.");
+		} else {
+			System.out.println("The tree is not height balanced.");
+		}
 	}
 }
