@@ -6,42 +6,50 @@ import com.Tree_program.Binary_Tree.Node;
 
 public class Sum_Tree {
 
-	private static class IsSumTreeFast {
-		int height;
-		boolean isBalanced;
+	// Define a class to hold the result of the Sum Tree check
+	private static class SumTreeInfo {
+		int sum;
+		boolean isSumTree;
 
-		public IsSumTreeFast(int height, boolean isBalanced) {
-			this.height = height;
-			this.isBalanced = isBalanced;
+		public SumTreeInfo(int sum, boolean isSumTree) {
+			this.sum = sum;
+			this.isSumTree = isSumTree;
 		}
 	}
 
-// Function to calculate height and balance condition of a subtree
-	private static IsSumTreeFast sum(Node root) {
-		// Base case: If node is null, it's balanced with height 0
+	// Function to check if a binary tree is a Sum Tree
+	private static SumTreeInfo isSumTree(Node root) {
+		// Base case: If node is null, it's a sum tree with sum 0
 		if (root == null) {
-			return new IsSumTreeFast(0, true);
+			return new SumTreeInfo(0, true);
 		}
-		// for the leafe
 
+		// If it's a leaf node, it's considered a sum tree with its own value
 		if (root.left == null && root.right == null) {
-			return new IsSumTreeFast(root.data, true);
+			return new SumTreeInfo(root.data, true);
 		}
 
-		// Recursively calculate heights and balance for left and right subtrees
-		IsSumTreeFast leftResult = sum(root.left);
-		IsSumTreeFast rightResult = sum(root.right);
+		// Recursively calculate sum and check sum tree property for left and right
+		// subtrees
+		SumTreeInfo leftInfo = isSumTree(root.left);
+		SumTreeInfo rightInfo = isSumTree(root.right);
 
-		boolean left = leftResult.isBalanced;
-		boolean right = rightResult.isBalanced;
+		// Calculate sum of current node
+		int currentSum = root.data;
 
-		boolean cond = (root.data == (leftResult.height + rightResult.height)) ? true : false;
+		// Check if current node's value equals the sum of its left and right subtrees
+		boolean isCurrentSumTree = (currentSum == (leftInfo.sum + rightInfo.sum));
 
-		if (left && right && cond) {
-			return new IsSumTreeFast(2 * root.data, true);
-		} else {
-			return new IsSumTreeFast(0, false);
-		}
+		// Check if both left and right subtrees are sum trees
+		boolean isSubtreeSumTree = leftInfo.isSumTree && rightInfo.isSumTree;
+
+		// Determine if current node forms a sum tree
+		boolean isSumTree = isSubtreeSumTree && isCurrentSumTree;
+
+		// Calculate the total sum of the subtree rooted at the current node
+		int totalSum = currentSum + leftInfo.sum + rightInfo.sum;
+
+		return new SumTreeInfo(totalSum, isSumTree);
 	}
 
 	public Node buildTree() {
@@ -66,26 +74,12 @@ public class Sum_Tree {
 		return root; // Return the constructed subtree
 	}
 
-// Function to check whether a binary tree is balanced or not
-	public boolean isSumTree(Node root) {
-		// Get the result from the helper function
-		IsSumTreeFast result = sum(root);
-
-		// Return the balance status of the entire tree
-		return result.isBalanced;
-	}
-
 	public static void main(String[] args) {
 		Sum_Tree obj = new Sum_Tree();
 		Node root = obj.buildTree();
 
 		// 1 === true
 		// 0 === false;
-
-		if (obj.isSumTree(root)) {
-			System.out.println("Given binary tree is a sum tree 1 ");
-		} else {
-			System.out.println("Given binary tree is not a sum tree .. 0");
-		}
+		System.out.println(isSumTree(root).isSumTree);
 	}
 }
