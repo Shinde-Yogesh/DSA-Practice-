@@ -248,11 +248,11 @@ public class Check_For_Balaned_Tree {
 		Node root = new Node(data); // Create the root node
 
 		// Build left subtree
-		System.out.println("Enter the data for inserting in left node " + data);
+		System.out.println("Enter the data for inserting in left  " + data);
 		root.left = buildTree();
 
 		// Build right subtree
-		System.out.println("Enter the data for inserting in right node " + data);
+		System.out.println("Enter the data for inserting in right " + data);
 		root.right = buildTree();
 
 		return root; // Return the constructed subtree

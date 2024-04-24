@@ -2,8 +2,6 @@ package com.Tree_program;
 
 import java.util.Scanner;
 
-import com.Tree_program.Height_Of_Binary_Tree.Node;
-
 public class Identical_Tree {
 	class Node {
 		int data;
