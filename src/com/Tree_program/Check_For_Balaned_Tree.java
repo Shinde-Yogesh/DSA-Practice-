@@ -182,20 +182,21 @@ public class Check_For_Balaned_Tree {
 	}
 }*/
 
-static class Node {
-	int data;
-	Node left;
-	Node right;
 
-	// Constructor
-	public Node(int data) {
-		this.data = data;
-		this.left = null;
-		this.right = null;
-	}
-}
 
 public class Check_For_Balaned_Tree {
+	static class Node {
+		int data;
+		Node left;
+		Node right;
+
+		// Constructor
+		public Node(int data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
 // Function to calculate height of a subtree
 	int height(Node node) {
 		// Base case: If node is null, height is 0
