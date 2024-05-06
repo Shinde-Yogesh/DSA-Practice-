@@ -61,10 +61,18 @@ public class Vertical_Traversal_Of_Binary_Tree {
 		queue.add(new QueueObj(root, 0));
 
 		while (!queue.isEmpty()) {
+			//remove the front value from queue 
+			//which contain the Node and the hd
+			
 			QueueObj temp = queue.poll();
+			
+			//front node remove here
+			
 			Node node = temp.node;
 			int hd = temp.hd;
 
+			//here the current node add with  level wise node into the list
+			
 			if (!map.containsKey(hd))
 				map.put(hd, new ArrayList<Integer>());
 			map.get(hd).add(node.data);
