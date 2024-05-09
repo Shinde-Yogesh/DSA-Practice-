@@ -38,7 +38,7 @@ public class K_Sum_Path {
 
 		return root; // Return the constructed subtree
 	}
-
+/*
 	public int sumK(Node root, int k) {
 		ArrayList<Integer> path = new ArrayList<>();
 		return countPaths(root, k, path);
@@ -75,7 +75,20 @@ public class K_Sum_Path {
 		}
 		return count;
 	}
+*/			//chatGPT ans for sumK
+	 public int sumK(Node root, int k) {
+	        if (root == null) return 0;
+	        return countPaths(root, k) + sumK(root.left, k) + sumK(root.right, k);
+	    }
 
+	    private int countPaths(Node root, int k) {
+	        if (root == null) return 0;
+	        int count = 0;
+	        if (root.data == k) count++;
+	        count += countPaths(root.left, k - root.data);
+	        count += countPaths(root.right, k - root.data);
+	        return count;
+	    }
 	public static void main(String[] args) {
 		K_Sum_Path obj = new K_Sum_Path();
 		Node root = obj.buildTree();
