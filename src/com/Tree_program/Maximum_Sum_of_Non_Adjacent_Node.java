@@ -40,10 +40,11 @@ public class Maximum_Sum_of_Non_Adjacent_Node {
 
 		return root; // Return the constructed subtree
 	}
-
+/*   Code work 
 	// Pair storing maximum sum for current node in 2 cases :
 	// 1. If current node is included
 	// 2. if current node in excluded
+	
 	static class Pair {
 		int include;
 		int exclude;
@@ -76,7 +77,25 @@ public class Maximum_Sum_of_Non_Adjacent_Node {
 
 		return curr;
 	}
-
+*/
+	//second approach
+	public int getMaxSum(Node root) {
+        int[] result = maxSumHelper(root);
+        return Math.max(result[0], result[1]);
+    }
+    
+    private int[] maxSumHelper(Node node) {
+        if (node == null)
+            return new int[]{0, 0};
+        
+        int[] left = maxSumHelper(node.left);
+        int[] right = maxSumHelper(node.right);
+        
+        int include = node.data + left[1] + right[1];
+        int exclude = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        
+        return new int[]{include, exclude};
+    }
 	public static void main(String[] args) {
 		Maximum_Sum_of_Non_Adjacent_Node obj = new Maximum_Sum_of_Non_Adjacent_Node();
 		Node root = obj.buildTree();
