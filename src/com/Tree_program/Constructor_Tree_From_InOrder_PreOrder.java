@@ -1,7 +1,10 @@
 package com.Tree_program;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Constructor_Tree_From_InOrder_PreOrder {
-	/*
+	/*      Solution 1 
 	static class Node {
 		int data;
 		Node left;
@@ -65,6 +68,10 @@ public class Constructor_Tree_From_InOrder_PreOrder {
 	        printPostorder(root1);
 	        System.out.println();
 	 }*/
+	
+	
+	/*
+	 	Solution 2 
 	 static class Node {
 	        int data;
 	        Node left, right;
@@ -105,6 +112,72 @@ public class Constructor_Tree_From_InOrder_PreOrder {
 	            }
 	        }
 	        return -1; // This should not happen if the input arrays are correct
+	    }
+
+	    public static void printPostOrder(Node node) {
+	        if (node == null) {
+	            return;
+	        }
+
+	        printPostOrder(node.left);
+	        printPostOrder(node.right);
+	        System.out.print(node.data + " ");
+	    }
+
+	    public static void main(String[] args) {
+	        int inorder1[] = {1, 6, 8, 7};
+	        int preorder1[] = {1, 6, 7, 8};
+	        int n1 = inorder1.length;
+
+	        Node root1 = buildTree(inorder1, preorder1, n1);
+	        printPostOrder(root1); // Output: 8 7 6 1
+	        System.out.println();
+
+	        int inorder2[] = {3, 1, 4, 0, 5, 2};
+	        int preorder2[] = {0, 1, 3, 4, 2, 5};
+	        int n2 = inorder2.length;
+
+	        Node root2 = buildTree(inorder2, preorder2, n2);
+	        printPostOrder(root2); // Output: 3 4 1 5 2 0
+	        System.out.println();
+	    }*/
+	
+	
+	 static class Node {
+	        int data;
+	        Node left, right;
+
+	        public Node(int item) {
+	            data = item;
+	            left = right = null;
+	        }
+	    }
+
+	    static class Index {
+	        int index = 0;
+	    }
+
+	    public static Node buildTree(int inorder[], int preorder[], int n) {
+	        Index preIndex = new Index();
+	        Map<Integer, Integer> inorderMap = new HashMap<>();
+	        for (int i = 0; i < n; i++) {
+	            inorderMap.put(inorder[i], i);
+	        }
+	        return solve(inorder, preorder, preIndex, 0, n - 1, inorderMap);
+	    }
+
+	    private static Node solve(int[] inorder, int[] preorder, Index preIndex, int inOrderStart, int inOrderEnd, Map<Integer, Integer> inorderMap) {
+	        if (preIndex.index >= preorder.length || inOrderStart > inOrderEnd) {
+	            return null;
+	        }
+
+	        int element = preorder[preIndex.index++];
+	        Node root = new Node(element);
+	        int position = inorderMap.get(element);
+
+	        root.left = solve(inorder, preorder, preIndex, inOrderStart, position - 1, inorderMap);
+	        root.right = solve(inorder, preorder, preIndex, position + 1, inOrderEnd, inorderMap);
+	        return root;
 	    }
 
 	    public static void printPostOrder(Node node) {
