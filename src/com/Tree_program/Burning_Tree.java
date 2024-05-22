@@ -129,3 +129,137 @@ public class Burning_Tree {
         System.out.println(obj.minTime(root, 7));
     }
 }
+
+/*
+ 			Optimized code
+ 			package com.Tree_program;
+
+import java.util.*;
+
+public class Burning_Tree {
+    static class Node {
+        int data;
+        Node left;
+        Node right;
+
+        // Constructor
+        public Node(int data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    public Node buildTree() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the data: ");
+        int data = sc.nextInt();
+
+        if (data == -1) {
+            return null; // Return null to indicate no node
+        }
+
+        Node root = new Node(data); // Create the root node
+
+        // Build left subtree
+        System.out.println("Enter the node for inserting in left " + data);
+        root.left = buildTree();
+
+        // Build right subtree
+        System.out.println("Enter the node for inserting in right " + data);
+        root.right = buildTree();
+
+        return root; // Return the constructed subtree
+    }
+
+    public static int minTime(Node root, int target) {
+        // Create nodeToParent mapping and find the target node
+        HashMap<Node, Node> nodeToParent = new HashMap<>();
+        Node targetNode = createParentMapping(root, target, nodeToParent);
+        return burnTree(targetNode, nodeToParent);
+    }
+
+    private static Node createParentMapping(Node root, int target, Map<Node, Node> nodeToParent) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        nodeToParent.put(root, null);
+        Node targetNode = null;
+
+        while (!queue.isEmpty()) {
+            Node currentNode = queue.poll();
+            if (currentNode.data == target) {
+                targetNode = currentNode;
+            }
+
+            if (currentNode.left != null) {
+                nodeToParent.put(currentNode.left, currentNode);
+                queue.add(currentNode.left);
+            }
+
+            if (currentNode.right != null) {
+                nodeToParent.put(currentNode.right, currentNode);
+                queue.add(currentNode.right);
+            }
+        }
+        return targetNode;
+    }
+
+    private static int burnTree(Node targetNode, Map<Node, Node> nodeToParent) {
+        Queue<Node> queue = new LinkedList<>();
+        Set<Node> visited = new HashSet<>();
+        queue.add(targetNode);
+        visited.add(targetNode);
+
+        int time = 0;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            boolean burnedNewNodes = false;
+
+            for (int i = 0; i < size; i++) {
+                Node currentNode = queue.poll();
+
+                if (currentNode.left != null && !visited.contains(currentNode.left)) {
+                    queue.add(currentNode.left);
+                    visited.add(currentNode.left);
+                    burnedNewNodes = true;
+                }
+
+                if (currentNode.right != null && !visited.contains(currentNode.right)) {
+                    queue.add(currentNode.right);
+                    visited.add(currentNode.right);
+                    burnedNewNodes = true;
+                }
+
+                Node parentNode = nodeToParent.get(currentNode);
+                if (parentNode != null && !visited.contains(parentNode)) {
+                    queue.add(parentNode);
+                    visited.add(parentNode);
+                    burnedNewNodes = true;
+                }
+            }
+
+            if (burnedNewNodes) {
+                time++;
+            }
+        }
+
+        return time;
+    }
+
+    public static void main(String[] args) {
+        Burning_Tree obj = new Burning_Tree();
+        Node root = obj.buildTree();
+        System.out.println("Enter the target node: ");
+        Scanner sc = new Scanner(System.in);
+        int target = sc.nextInt();
+        System.out.println("Minimum time to burn the tree: " + minTime(root, target));
+    }
+}
+
+  
+  This version maintains the O(N) time complexity and O(height of tree) auxiliary
+   space complexity while being more readable and efficient
+  
+ */
+*/
