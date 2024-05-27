@@ -78,7 +78,13 @@ public class Binary_Tree_Creation {
 
 	// for the Binary search code
 	public static boolean searchInBST(Node root, int x) {
-		if (root == null) {
+		/*	
+		 		Approach 1
+		 		
+		 		
+		 		
+		 		
+		 
 			return false;
 		}
 
@@ -92,7 +98,24 @@ public class Binary_Tree_Creation {
 		} else {
 			return searchInBST(root.right, x);
 		}
-
+	*/
+		
+		Node temp = root;
+		while(temp != null)
+		{
+			if(temp.data == x)
+			{
+				return true;
+			}
+			if(temp.data > x)
+			{
+				temp = temp.left;
+			}else
+			{
+				temp = temp.right;
+			}
+		}
+		return false;
 	}
 
 	public static void main(String[] args) {
