@@ -117,6 +117,25 @@ public class Binary_Tree_Creation {
 		}
 		return false;
 	}
+	
+	static Node minValue(Node root)
+	{
+		Node temp = root;
+		while(temp.left != null)
+		{
+			temp = temp.left;
+		}
+		return temp;
+	}
+	static Node maxValue(Node root)
+	{
+		Node temp = root;
+		while(temp.right != null)
+		{
+			temp = temp.right;
+		}
+		return temp;
+	}
 
 	public static void main(String[] args) {
 		System.out.println("Enter the data to create BST:");
@@ -124,5 +143,10 @@ public class Binary_Tree_Creation {
 
 		System.out.println("Printing the BST:");
 		levelOrderTraversal(root);
+		
+		System.out.println();
+		
+		System.out.println("The min value : "+minValue(root).data);
+		System.out.println("The max value : "+maxValue(root).data);
 	}
 }
