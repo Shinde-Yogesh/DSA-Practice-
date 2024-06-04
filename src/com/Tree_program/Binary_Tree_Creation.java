@@ -225,12 +225,13 @@ public class Binary_Tree_Creation {
 /* 		
 						Tree for the deleteNode
 						
-						      50
-						  /	        \
-						30		     70
-				       /   \        /   \
-				    20    	40	   60    80
+						    Let us create following BST
+						              50
+						           /     \
+						          30      70
+						         /  \    /  \
+						       20   40  60   80 
 			
-
-
+Time complexity is O(h) 
+In the worst case O(n)
 */
