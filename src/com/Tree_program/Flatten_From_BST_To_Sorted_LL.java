@@ -48,8 +48,6 @@ public class Flatten_From_BST_To_Sorted_LL {
 
 
     public static void main(String[] args) {
-        Flatten_From_BST_To_Sorted_LL solution = new Flatten_From_BST_To_Sorted_LL();
-
         // Example BST construction
         TreeNode<Integer> root = new TreeNode<>(10);
         root.left = new TreeNode<>(6);
