@@ -23,7 +23,7 @@ public class Buys_And_Sells_Stocks {
 	public static void main(String[] args) {
 		int prices[] = {7, 1, 5 ,3 ,6, 4};
 		
-		System.out.println();
+		System.out.println(buysAndSellsStocks(prices));
 	}
 
 }
