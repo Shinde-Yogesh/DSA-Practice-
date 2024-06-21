@@ -3,10 +3,6 @@ package com.array_program;
 import java.util.Arrays;
 
 public class Sum_of_Array_Until_size_Not_Equval_0 {
-	
-	
-
-
 	public static void printTriangle(int[] A) {
 		// Base case
 		if (A.length < 1)
@@ -21,7 +17,7 @@ public class Sum_of_Array_Until_size_Not_Equval_0 {
 			temp[i] = x;
 		}
 
-		// Make a recursive call and pass
+		// Making a recursive call and pass
 		// the newly created array
 		printTriangle(temp);
 
@@ -30,10 +26,8 @@ public class Sum_of_Array_Until_size_Not_Equval_0 {
 		System.out.println(Arrays.toString(A));
 	}
 
-	// Driver function
 	public static void main(String[] args) {
 		int[] A = { 1, 2, 3, 4, 5 };
 		printTriangle(A);
 	}
-
 }
