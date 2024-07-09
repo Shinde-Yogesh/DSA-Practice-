@@ -2,8 +2,8 @@ package com.recursion_program.easy_Level;
 
 public class Product_of_2_Numbers_using_Recursion {
 	public static void main(String[] args) {
-		int num1 = 100;
-		int num2 = 5;
+		int num1 = 5;
+		int num2 = 2;
 
 		int result = multiply(num1, num2);
 		System.out.println("Product of " + num1 + " and " + num2 + " is: " + result);
