@@ -1,33 +1,41 @@
 package com.recursion_program.easy_Level;
 
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Geek_Onacci_Number {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int t = sc.nextInt();
-		for (int i = 0; i < t; i++) {
+		int n = sc.nextInt();
+		for (int i = 0; i < n; i++) {
 			int a = sc.nextInt();
 			int b = sc.nextInt();
 			int c = sc.nextInt();
-			int n = sc.nextInt();
+			
 
-			int ans = geekOnacci(a, b, c, n);
+			HashMap<Integer, Integer> memo = new HashMap<>();
+			int ans = geekOnacci(a, b, c, n, memo);
 			System.out.println(ans);
 		}
+		sc.close();
 	}
 
-	public static int geekOnacci(int a, int b, int c, int n) {
+	public static int geekOnacci(int a, int b, int c, int n, HashMap<Integer, Integer> memo) {
 		if (n == 1)
 			return a;
 		if (n == 2)
 			return b;
 		if (n == 3)
 			return c;
-		return geekOnacci(a, b, c, n - 1) + geekOnacci(a, b, c, n - 2) + geekOnacci(a, b, c, n - 3);
+		if (memo.containsKey(n))
+			return memo.get(n);
+		int result = geekOnacci(a, b, c, n - 1, memo) + geekOnacci(a, b, c, n - 2, memo) + geekOnacci(a, b, c, n - 3, memo);
+		memo.put(n, result);
+		return result;
 	}
 }
+
 
 /*
  * 
