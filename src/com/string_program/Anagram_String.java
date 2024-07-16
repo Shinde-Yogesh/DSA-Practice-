@@ -30,8 +30,16 @@ public class Anagram_String {
 	        return true;
 	    }
 	   public static void main(String[] args) {
-		String abc = "madam";
-		String value = "madam";
-		System.out.println(areAnagram(abc,value));
+		    String abc = "listen";
+		    String value = "silent";
+		    System.out.println(areAnagram(abc, value)); // Output: true
+		    
+		    abc = "triangle";
+		    value = "integral";
+		    System.out.println(areAnagram(abc, value)); // Output: true
+		    
+		    abc = "apple";
+		    value = "pale";
+		    System.out.println(areAnagram(abc, value));
 	}
 }
