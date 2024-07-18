@@ -33,6 +33,46 @@ public class Heap {
         }
         System.out.println();
     }
+    
+    public void delete() {
+        if (size == 0) {
+            System.out.println("Nothing to delete");
+            return;
+        }
+
+        // Step 1: Replace the root node with the last node
+        array[1] = array[size];
+
+        // Step 2: Decrement size
+        size--;
+
+        // Step 3: Take the root node to its correct position
+        int i = 1;
+        while (i <= size) {
+            int leftIndex = 2 * i;
+            int rightIndex = 2 * i + 1;
+
+            int largest = i;
+
+            // Check if the left child is larger
+            if (leftIndex <= size && array[leftIndex] > array[largest]) {
+                largest = leftIndex;
+            }
+
+            // Check if the right child is larger
+            if (rightIndex <= size && array[rightIndex] > array[largest]) {
+                largest = rightIndex;
+            }
+
+            // If the largest is not the current node, swap
+            if (largest != i) {
+                swap(i, largest);
+                i = largest;
+            } else {
+                return;
+            }
+        }
+    }
 
     private void swap(int i, int j) {
         int temp = array[i];
@@ -48,6 +88,10 @@ public class Heap {
         heap.insert(52);
         heap.insert(54);
 
+        heap.print();
+        
+        heap.delete();
+        
         heap.print();
     }
 }
