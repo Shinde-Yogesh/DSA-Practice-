@@ -79,6 +79,37 @@ public class Heap {
         array[i] = array[j];
         array[j] = temp;
     }
+    
+ // Heapify Algorithm
+    void heapify(int array[], int n, int i)
+    {
+        int largest = i;
+        int left = 2 * i + 1; // Correct calculation for left child
+        int right = 2 * i + 2; // Correct calculation for right child
+
+        // Check if the left child exists and is greater than the current largest
+        if (left < n && array[left] > array[largest])
+        {
+            largest = left;
+        }
+
+        // Check if the right child exists and is greater than the current largest
+        if (right < n && array[right] > array[largest])
+        {
+            largest = right;
+        }
+
+        // If the largest element is not the current element, swap and continue heapifying
+        if (largest != i)
+        {
+        	 int temp = array[i];
+             array[i] = array[largest];
+             array[largest] = temp;
+
+             // Recursively heapify the affected subtree
+             heapify(array, n, largest);
+        }
+    }
 
     public static void main(String[] args) {
         Heap heap = new Heap(100);
@@ -93,5 +124,19 @@ public class Heap {
         heap.delete();
         
         heap.print();
+        
+        int array[] = {54,53,55,52,50}; 
+        int n = array.length-1;
+     
+        // Build heap (rearrange array)
+        for (int i = n / 2 - 1; i >= 0; i--) {
+           heap. heapify(array, n, i);
+        }
+
+        // Print the heapified array
+        System.out.println("Heapified array:");
+        for (int i : array) {
+            System.out.print(i + " ");
+        }
     }
 }
