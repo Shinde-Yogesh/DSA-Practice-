@@ -137,6 +137,34 @@ public class Heap {
 		}
 	}
 
+	  public  void heapSort(int array[], int n) {
+	        // Build max heap
+	        for (int i = n / 2 - 1; i >= 0; i--) {
+	            heapify(array, n, i);
+	        }
+
+	        // Extract elements from heap one by one
+	        for (int size = n - 1; size > 0; size--) {
+	            // Step 1: Swap the root (maximum value) with the last element
+	        	swapForHeapSort(array, size, 0);
+
+	            // Step 2: Call heapify on the reduced heap
+	            heapify(array, size, 0);
+	        }
+	    }
+	  
+	  private static void swapForHeapSort(int array[], int i, int j) {
+	        int temp = array[i];
+	        array[i] = array[j];
+	        array[j] = temp;
+	    }
+	
+	public static void printArray(int array[]) {
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(array[i] + " ");
+		}
+		System.out.println();
+	}
 	public static void main(String[] args) {
 		Heap heap = new Heap(100);
 		heap.insert(50);
@@ -162,18 +190,19 @@ public class Heap {
 
 		// Print the heapified array
 		System.out.println("Max Heapified array:");
-		for (int i : array) {
-			System.out.print(i + " ");
-		}
+		printArray(array);
 
 		for (int i = n / 2 - 1; i >= 0; i--) {
 			heap.heapify_Mini(array, n, i);
 		}
-		System.out.println();
+		
 		// Print the heapified array
 		System.out.println("Mini Heapified array:");
-		for (int i : array) {
-			System.out.print(i + " ");
-		}
+		printArray(array);
+		
+		
+		System.out.println("Sorted Array : ");
+		heap.heapSort(array, array.length);
+		printArray(array);
 	}
 }
