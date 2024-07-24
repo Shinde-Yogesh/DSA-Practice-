@@ -3,24 +3,25 @@ package com.string_program;
 public class Number_Make_Permitutations_Google_Question {
 
 	public static void main(String[] args) {
-		
-		permitutaions("", "12");
-		
+		generatePermutations("", "12");
 	}
-	
-	static void permitutaions(String p, String up)
-	{
-		if(up.isEmpty())
-		{
-			System.out.println(p);
+
+	static void generatePermutations(String currentPermutation, String remainingDigits) {
+		// Base case: If there are no more digits to process, print the current
+		// permutation
+		if (remainingDigits.isEmpty()) {
+			System.out.println(currentPermutation);
 			return;
 		}
-		
-		int digit  = up.charAt(0) - '0';  //this will convert '2' into 2
-		for(int i = (digit - 1) *3; i < digit * 3; i++)
-		{
-			char ch = (char) ('a' + i);
-			permitutaions(p + ch, up.substring(1));
+
+		// Convert the first digit character to an integer
+		int digit = remainingDigits.charAt(0) - '0';
+
+		// Loop to map the digit to its corresponding letters
+		for (int i = (digit - 1) * 3; i < digit * 3; i++) {
+			char letter = (char) ('a' + i);
+			// Recursively generate permutations with the next digit
+			generatePermutations(currentPermutation + letter, remainingDigits.substring(1));
 		}
 	}
 }
