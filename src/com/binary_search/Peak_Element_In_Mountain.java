@@ -1,32 +1,26 @@
 package com.binary_search;
 
 public class Peak_Element_In_Mountain {
-	public static int peakelemenet(int array[])
-	{
-		int s = 0;
-		int e = array.length -1;
-		
-		int mid = s + (e-s)/2;
-		
-		while(s < e)
-		{
-			if(array[mid] < array[mid+1])
-			{
-				s = mid+1;
+	public static int findPeakElement(int[] arr) {
+		int start = 0;
+		int end = arr.length - 1;
+
+		while (start < end) {
+			int mid = start + (end - start) / 2;
+
+			if (arr[mid] < arr[mid + 1]) {
+				start = mid + 1;
+			} else {
+				end = mid;
 			}
-			else
-			{
-				e=mid;
-			}
-			mid = s + (e-s)/2;
 		}
-		return s;
-	}
-	
-	public static void main(String[] args) {
-		int array[] = {0,10,5,2};
-		
-		System.out.println(peakelemenet(array));
+
+		return start;
 	}
 
+	public static void main(String[] args) {
+		int[] arr = { 0, 10, 5, 2 };
+
+		System.out.println("Peak element index: " + findPeakElement(arr));
+	}
 }
