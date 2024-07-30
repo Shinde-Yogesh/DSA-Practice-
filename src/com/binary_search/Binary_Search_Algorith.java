@@ -2,40 +2,39 @@ package com.binary_search;
 
 public class Binary_Search_Algorith {
 
-	public static int binary_search(int array[], int len, int key) {
-		int start = 0;
-		int end = len - 1;
-		int mid = start + (end - start) / 2;
+    public static int binarySearch(int arr[], int length, int target) {
+        int start = 0;
+        int end = length - 1;
+        int mid;
 
-		while (start <= end) {
-			if (array[mid] == key) {
-				return mid;
-			}
+        while (start <= end) {
+            mid = start + (end - start) / 2;
 
-			// go towords right side
+            if (arr[mid] == target) {
+                return mid;
+            }
 
-			if (key > array[mid]) {
-				start = mid + 1;
-			} else {
-				end = mid - 1;
-			}
-			mid = start + (end - start) / 2;;
-		}
-		return -1;
-	}
+            // Move to the right half if the target is greater than the middle element
+            if (target > arr[mid]) {
+                start = mid + 1;
+            } else {
+                // Move to the left half if the target is smaller than the middle element
+                end = mid - 1;
+            }
+        }
+        return -1;
+    }
 
-	public static void main(String[] args) {
-		System.out.println("Program is running ");
+    public static void main(String[] args) {
+        System.out.println("Program is running");
 
-		int evenArray[] = { 2, 4, 6, 8, 12, 18 };
-		int length  = evenArray.length;
-		int key =12;
-		
-		
-		int oddArray[] = {3,8,11,14,16};
+        int evenArray[] = {2, 4, 6, 8, 12, 18};
+        int length = evenArray.length;
+        int target = 12;
 
-		int index = binary_search(evenArray, length, key);
-		System.out.println("index of "+ key +" is " + index);
-	}
+        int oddArray[] = {3, 8, 11, 14, 16};
 
+        int index = binarySearch(evenArray, length, target);
+        System.out.println("Index of " + target + " is " + index);
+    }
 }
