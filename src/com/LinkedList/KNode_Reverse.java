@@ -1,89 +1,68 @@
 package com.LinkedList;
 
 public class KNode_Reverse {
-	 static Node head;
-	  
-	    static class Node {
-	 
-	        int data;
-	        Node next;
-	 
-	        Node(int d)
-	        {
-	            data = d;
-	            next = null;
-	        }
-	    }
-	
-	
-	void printList(Node node)
- {
-     while (node != null) {
-         System.out.print(node.data + " "+" -> ");
-         node = node.next;
-     }
-     System.out.println("NULL");
- }
-	  public static Node kReverse(Node head, int k)
-	    {
+    static Node head;
 
-	        Node curr = head;
-	        Node prev = null, next = null;
-	        int cnt = 0;
+    static class Node {
+        int data;
+        Node next;
 
-	        // Reversing the first K nodes of the given linked list.
-	        while (curr != null && cnt < k)
-	        {
-	            next = curr.next;
-	            curr.next = prev;
-	            prev = curr;
-	            curr = next;
-	            cnt++;
-	        }
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
 
-	        // If the last group has < k nodes, reversing it again to get the previous order.
-	        if (cnt < k)
-	        {
-	            curr = prev;
-	            prev = null;
-	            next = null;
-	            cnt = 0;
-	            while (curr != null && cnt < k)
-	            {
+    void printList(Node node) {
+        while (node != null) {
+            System.out.print(node.data + " -> ");
+            node = node.next;
+        }
+        System.out.println("NULL");
+    }
 
-	                next = curr.next;
-	                curr.next = prev;
-	                prev = curr;
-	                curr = next;
-	                cnt++;
-	            }
-	        }
+    public static Node reverseKNodes(Node head, int k) {
+        Node current = head;
+        Node previous = null;
+        Node next = null;
+        int count = 0;
 
-	        // If some nodes are still left, then we pass it to the recursive function.
-	        if (next != null)
-	        {
-	            head.next = kReverse(next, k);
-	        }
+        // Reverse the first K nodes of the linked list
+        while (current != null && count < k) {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+            count++;
+        }
 
-	        return prev;
+        // After reversing, next is now pointing to (k+1)th node
+        // Recursively call for the list starting from the current.
+        // And make the rest of the list as the next of the first node
+        if (next != null) {
+            head.next = reverseKNodes(next, k);
+        }
 
-	    }
+        // previous is now the new head of the reversed group
+        return previous;
+    }
 
- // Driver Code
- public static void main(String[] args)
- {
-	 KNode_Reverse list = new KNode_Reverse();
-	 KNode_Reverse.head = new Node(85);
-	 KNode_Reverse.head.next = new Node(15);
-	 KNode_Reverse.head.next.next = new Node(4);
-	 KNode_Reverse.head.next.next.next = new Node(20);
+    public static void main(String[] args) {
+        KNode_Reverse list = new KNode_Reverse();
+        KNode_Reverse.head = new Node(85);
+        KNode_Reverse.head.next = new Node(15);
+        KNode_Reverse.head.next.next = new Node(4);
+        KNode_Reverse.head.next.next.next = new Node(20);
 
-     System.out.println("Given linked list");
-     list.printList(head);
-//     head = list.reverse(head);
-     list.kReverse(head,2);
-     System.out.println("");
-     System.out.println("Reversed linked list ");
-     list.printList(head);
- }
+        System.out.println("Given linked list:");
+        list.printList(head);
+
+        // Reverse every K nodes in the list
+        // K means the reverse the node after the next node 
+        int k = 2;
+        head = KNode_Reverse.reverseKNodes(head, k);
+
+        System.out.println("Reversed linked list in groups of K:");
+        list.printList(head);
+    }
 }
