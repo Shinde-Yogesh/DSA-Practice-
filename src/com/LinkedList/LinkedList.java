@@ -36,8 +36,10 @@ public class LinkedList {
  
         System.out.println("Given linked list");
         list.printList(head);
+        
         head = list.reverse(head);
         System.out.println("");
+        
         System.out.println("Reversed linked list ");
         list.printList(head);
     }
