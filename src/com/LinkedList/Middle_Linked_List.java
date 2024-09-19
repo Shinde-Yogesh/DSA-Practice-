@@ -4,7 +4,6 @@ public class Middle_Linked_List {
 	static Node head;
 
 	static class Node {
-
 		int data;
 		Node next;
 
@@ -14,46 +13,30 @@ public class Middle_Linked_List {
 		}
 	}
 
+	// Method to print the linked list
 	void printList(Node node) {
 		while (node != null) {
-			System.out.print(node.data + " " + " -> ");
+			System.out.print(node.data + " -> ");
 			node = node.next;
 		}
 		System.out.println("NULL");
 	}
 
-	/*
-	 * // for the length public static int length(Node head) { int count = 0; while
-	 * (head != null) { count++; head = head.next; } return count; }
-	 * 
-	 * //for the middle node Node findMiddleNode(Node head) { int len =
-	 * length(head); int ans = (len/2);
-	 * 
-	 * Node temp = head; int cnt = 0; while(cnt < ans) { temp = temp.next; cnt++; }
-	 * return temp; }
-	 */
-
-	// optimization code
-
+	// Optimized method to find the middle node of a linked list
 	Node findMiddleNode(Node head) {
-		if (head == null || head.next == null)
+		if (head == null || head.next == null) {
 			return head;
-
-		// for the 2 node condition
-		if (head.next.next == null)
-			return head.next;
+		}
 
 		Node slow = head;
-		Node fast = head.next;
+		Node fast = head;
 
-		while (fast != null) {
-			fast = fast.next;
-
-			if (fast != null) {
-				fast = fast.next;
-			}
+		while (fast != null && fast.next != null) {
 			slow = slow.next;
+			fast = fast.next.next;
 		}
+
+		// The slow pointer will now be at the middle node
 		return slow;
 	}
 
@@ -66,11 +49,11 @@ public class Middle_Linked_List {
 		Middle_Linked_List.head.next.next.next = new Node(20);
 		Middle_Linked_List.head.next.next.next.next = new Node(25);
 
-		System.out.println("Given linked list");
+		System.out.println("Given linked list:");
 		list.printList(head);
-		System.out.println("Middle Node of linked list " + list.findMiddleNode(head).data);
 
-//		System.out.println("Length of LL : "+length(head));
+		// Finding and printing the middle node
+		Node middleNode = list.findMiddleNode(head);
+		System.out.println("Middle Node of linked list: " + middleNode.data);
 	}
-
 }
