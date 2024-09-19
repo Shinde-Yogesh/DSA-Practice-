@@ -4,133 +4,99 @@ import java.util.HashSet;
 
 public class Remove_Duplicate_LL {
 
-	public static class Node {
-		int data;
-		Node next;
+    public static class Node {
+        int data;
+        Node next;
 
-		Node(int data) {
-			this.data = data;
-			next = null;
-		}
-	}
-
-	// printing the node
-	public static void print(Node head) {
-
-		if (head == null) {
-			System.out.println("Circular Linked List is empty.");
-			return;
-		}
-
-		Node current = head;
-		while(current != null)
-		{
-			System.out.print(current.data + " -> ");
-			current = current.next;
-		}
-		System.out.println("NULL");
-		System.out.println();
-	}
-
-	static Node removeDuplicateNode(Node head) {
-		if (head == null) {
-			return null;
-		}
-
-		// store the temp
-		Node curr = head;
-
-		while (curr != null) {
-			if ((curr.next != null) && curr.data == curr.next.data) {
-
-				// create the node of next node
-				Node next_next = curr.next.next;
-
-				// assign the curr node to the curr.next.nxt == next_next
-				curr.next = next_next;
-			} else {
-				curr = curr.next;
-			}
-		}
-		return head;
-	}
-	
-	//for the unsorted linked list
-//	public static Node removeDuplicateUnordersorted(Node head)
-//	{
-//		//check head is empty or not
-//		if(head == null)
-//			return null;
-//		
-//		//temp node
-//		Node temp= head;
-//		
-//		HashSet<Node> visited = new HashSet<>();
-//		 while(temp != null)
-//		 {
-//			 if(!visited.contains(temp))
-//			 {
-//				 visited.add(temp);
-//				 temp = temp.next;
-//			 }
-//			 //move the next node
-//			 temp = temp.next;
-//		 }
-//		 return head;
-//	}
-
-	public static Node removeDuplicateUnordered(Node head) {
-        // Check if the head is empty
-        if (head == null)
-            return null;
-
-        // Temp node
-        Node current = head;
-        Node previous = null;
-
-        HashSet<Integer> visited = new HashSet<>();
-      
-        while (current != null) {
-        
-            if (!visited.contains(current.data)) {
-                visited.add(current.data);
-                previous = current;
-            } else {
-                // Remove the duplicate node by skipping it
-                previous.next = current.next;
-            }
-            // Move to the next node
-            current = current.next;
+        Node(int data) {
+            this.data = data;
+            next = null;
         }
-        
+    }
+
+    // Print the linked list
+    public static void printList(Node head) {
+        if (head == null) {
+            System.out.println("Linked List is empty.");
+            return;
+        }
+
+        Node currentNode = head;
+        while (currentNode != null) {
+            System.out.print(currentNode.data + " -> ");
+            currentNode = currentNode.next;
+        }
+        System.out.println("NULL");
+        System.out.println();
+    }
+
+    // Remove duplicates in a sorted linked list
+    public static Node removeDuplicatesSorted(Node head) {
+        if (head == null) {
+            return null;
+        }
+
+        Node currentNode = head;
+
+        while (currentNode != null && currentNode.next != null) {
+            if (currentNode.data == currentNode.next.data) {
+                currentNode.next = currentNode.next.next;  // Skip duplicate
+            } else {
+                currentNode = currentNode.next;  // Move to next node
+            }
+        }
 
         return head;
     }
-	
-	public static void main(String[] args) {
 
-		Node NodeOne = new Node(1);
-		Node NodeTwo = new Node(3);
-		Node NodeThree = new Node(2);
-		Node NodeFour = new Node(5);
-		Node NodeFive = new Node(1);
-		Node NodeSix = new Node(1);
-		
-		Node head = NodeOne;
+    // Remove duplicates in an unsorted linked list
+    public static Node removeDuplicatesUnordered(Node head) {
+        if (head == null) {
+            return null;
+        }
 
-		NodeOne.next = NodeTwo;
-		NodeTwo.next = NodeThree;
-		NodeThree.next = NodeFour;
-		NodeFour.next = NodeFive;
-		NodeFive.next = NodeSix;
-		NodeSix.next = null;
-		
-		System.out.println("Before the applying the method ");
-		print(head);
-		
-		removeDuplicateUnordered(head);
-		System.out.println("After the applied the method ");
-		print(head);
+        HashSet<Integer> visitedData = new HashSet<>();
+        Node currentNode = head;
+        Node previousNode = null;
 
-	}
+        while (currentNode != null) {
+            if (!visitedData.contains(currentNode.data)) {
+                visitedData.add(currentNode.data);
+                previousNode = currentNode;
+            } else {
+                previousNode.next = currentNode.next;  // Skip duplicate node
+            }
+            currentNode = currentNode.next;
+        }
+
+        return head;
+    }
+
+    public static void main(String[] args) {
+        Node node1 = new Node(1);
+        Node node2 = new Node(3);
+        Node node3 = new Node(2);
+        Node node4 = new Node(5);
+        Node node5 = new Node(1);
+        Node node6 = new Node(1);
+
+        Node head = node1;
+
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node5;
+        node5.next = node6;
+
+        // Before applying the method
+        System.out.println("Before removing duplicates:");
+        printList(head);
+
+        // Remove duplicates from unordered list
+        removeDuplicatesUnordered(head);
+
+        // After applying the method
+        System.out.println("After removing duplicates:");
+        printList(head);
+    }
 }
