@@ -77,7 +77,6 @@ public class Merge_Sort_LL {
             temp = right;
             right = right.next;
         }
-        
         return ans.next;
     }
 
