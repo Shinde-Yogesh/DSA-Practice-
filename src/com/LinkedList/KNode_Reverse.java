@@ -42,7 +42,6 @@ public class KNode_Reverse {
         if (next != null) {
             head.next = reverseKNodes(next, k);
         }
-
         // previous is now the new head of the reversed group
         return previous;
     }
