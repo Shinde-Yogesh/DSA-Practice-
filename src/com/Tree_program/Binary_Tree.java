@@ -185,6 +185,5 @@ public class Binary_Tree {
         System.out.println("Postorder Traversal : ");
         obj.postorder(root);
         */
-        
     }
 }
