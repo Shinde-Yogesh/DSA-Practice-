@@ -63,7 +63,6 @@ public class Binary_Tree {
         }
     }
     
-    
     //Inorder Traversal
     
     public void inorder(Node root)
@@ -133,7 +132,6 @@ public class Binary_Tree {
     	{
     		Node temp = queue.poll();
     		
-    		
     		System.out.println("Enter the data for the left node : "+temp.data);
     		
     		int leftData = sc.nextInt();
@@ -141,8 +139,7 @@ public class Binary_Tree {
     		{
     			temp.left = new Node(leftData);
     			queue.add(temp.left);
-    		}
-    		
+		}
     		
     		System.out.println("Enter the data for the Right node : "+temp.data);
     		
