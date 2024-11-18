@@ -4,9 +4,8 @@ import java.util.HashSet;
 
 public class Floyds_Cycle_Detection_Algorithm {
 		private static Node startedNode;
-
-
-		//Solution One
+	
+	//Solution One
 	
 	public static class Node {
 		int data;
@@ -39,8 +38,7 @@ public class Floyds_Cycle_Detection_Algorithm {
 				fastPointer = fastPointer.next;
 				slowPointer = slowPointer.next;
 			}
-			
-			
+					
 			//if both node match at one location
 			if(fastPointer == slowPointer)
 			{
@@ -85,12 +83,11 @@ public class Floyds_Cycle_Detection_Algorithm {
 		 return false;
 	}
 	
-	
 	// for the fistNode in cycle using 
 	//floydsDetection method and get started Node
-	static //for the staring node return 
+	//for the staring node return 
 	
-	Node floydsDetection(Node head)
+	static Node floydsDetection(Node head)
 	{
 		if(head == null) return null;
 		
@@ -209,11 +206,6 @@ public class Floyds_Cycle_Detection_Algorithm {
 	  
 	  
 	}
-	
-	
-	
-	
-	
 	
 	
 	/*
