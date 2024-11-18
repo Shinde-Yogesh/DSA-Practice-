@@ -53,7 +53,6 @@ void print(Node tail)
 		tail = tail.next;
 	}while(tail != temp);
 }
-	
 	public static void main(String[] args) {
 		Node tail ;
 		Circular_LL cll = new Circular_LL();
@@ -62,8 +61,7 @@ void print(Node tail)
 	
 	}*/
 	
-	
-	  // Node class representing each element in the linked list
+  // Node class representing each element in the linked list
     private static class Node {
         int data;
         Node next;
