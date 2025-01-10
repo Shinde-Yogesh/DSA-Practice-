@@ -200,7 +200,6 @@ public class Heap {
 		System.out.println("Mini Heapified array:");
 		printArray(array);
 		
-		
 		System.out.println("Sorted Array : ");
 		heap.heapSort(array, array.length);
 		printArray(array);
