@@ -190,8 +190,6 @@ public class Floyds_Cycle_Detection_Algorithm {
 	    NodeEight.next = NodeThree;
 	    
 	    
-	    
-	    
 	    //calling method to evaluate
 //	    isLoopPresent(head);
 //	    System.out.println(cycleDetect(head));
@@ -203,8 +201,6 @@ public class Floyds_Cycle_Detection_Algorithm {
 //	    removeloop(head);
 	    
 	    print(head);
-	  
-	  
 	}
 	
 	
@@ -275,8 +271,6 @@ public class Floyds_Cycle_Detection_Algorithm {
         }
     }*/
   //  Time complexity is O(N) where N is the number of nodes in the linked list, space complexity is O(1) as you use only two pointers.
-
-
 
 }
 											/*
