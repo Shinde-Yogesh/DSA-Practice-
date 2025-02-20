@@ -2,9 +2,8 @@ package com.LinkedList;
 
 public class LinkedList {
 	  static Node head;
-	  
+	
 	    static class Node {
-	 
 	        int data;
 	        Node next;
 	 
@@ -15,13 +14,12 @@ public class LinkedList {
 	        }
 	    }
 	
-	
-	void printList(Node node)
-    {
-        while (node != null) {
+ void printList(Node node)
+   {
+       	 while (node != null) {
             System.out.print(node.data + " "+" -> ");
             node = node.next;
-        }
+   }
         System.out.println("NULL");
     }
  
@@ -63,13 +61,10 @@ public class LinkedList {
     //using recursion
     Node reverse(Node head)
     {
-    	
     	if(head == null || head.next == null) return head;
-    	
     	Node chotaHead = reverse(head.next);
     	head.next.next = head;
     	head.next = null;
-		return chotaHead;
-    	
+	return chotaHead;
     }
 }
